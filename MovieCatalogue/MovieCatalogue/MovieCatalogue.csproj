@@ -201,11 +201,11 @@
     </PublishFile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Documents\GitHub\DeadDog.Movies\DeadDog.Movies.csproj">
+    <ProjectReference Include="..\..\..\DeadDog.Movies\DeadDog.Movies.csproj">
       <Project>{3d454992-158c-423c-a2b8-137e6e00119d}</Project>
       <Name>DeadDog.Movies</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\..\Documents\GitHub\DeadDog\DeadDog.csproj">
+    <ProjectReference Include="..\..\..\DeadDog\DeadDog.csproj">
       <Project>{675ab5e0-4637-4e6c-8d38-aa7bb135b5ce}</Project>
       <Name>DeadDog</Name>
     </ProjectReference>

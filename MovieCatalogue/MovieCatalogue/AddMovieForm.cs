@@ -27,6 +27,73 @@ namespace MovieCatalogue
         IMDBBuffer bf = new IMDBBuffer();
 
         /// <summary>
+        /// Here you can find the constructors for the Form. Some calls to the Form requieres a Movie to be passed as a parameter, that's why there's a need for two.
+        /// </summary>
+        #region Constructors for the Form
+        public AddMovieForm()
+        {
+            InitializeComponent();
+            CommonInitialiser();
+        }
+
+        public AddMovieForm(Movie movie)
+        {
+            InitializeComponent();
+
+            #region Set text fields from the imported Movie
+            AddMovieTitleBox.Text = movie.Title;
+            AddMovieYearBox.Text = movie.Year.ToString();
+
+            for (int i = 0; i < movie.ActorList.Count; i++)
+                actorsInMovie.Add(movie.ActorList[i]);
+
+            AddMovieCountryBox.Text = movie.Country;
+            AddMovieDirectorBox.Text = movie.Director;
+            AddMovieCompendiumBox.Text = movie.CompendiumNumber.ToString();
+            AddMovieDescriptionBox.Text = movie.Description;
+            AddMoviePlayTimeTextBox.Text = movie.PlayTime.ToString();
+            IMDBMoviePictureBox.Image = Base64ToImage(movie.Poster);
+
+            if (movie.LentOut == true)
+            {
+                checkBox_lentOut.Checked = true;
+                lentToTextBox.Text = movie.LendPerson;
+            }
+
+            #endregion
+
+            CommonInitialiser();
+        }
+
+        public void CommonInitialiser()
+        {
+            IMBDSearchListBox.DataSource = IMBDMovieList;
+            IMBDSearchListBox.DisplayMember = "DisplayTitle";
+            IMBDSearchListBox.ClearSelected();
+
+            AddMovieGenreBox.DataSource = Enum.GetValues(typeof(MovieCatalogue.Core.Genre));
+
+            if (actorList == null)
+                actorList = new BindingList<Actor>();
+
+            for (int i = 0; i < actorList.Count; i++)
+                actorDisplayList.Add(actorList[i]);
+
+            AddMovieActorsInMovieBox.DataSource = actorsInMovie;
+            AddMovieActorsInMovieBox.DisplayMember = "DisplayActor";
+            AddMovieAllActorsBox.DataSource = actorDisplayList;
+            AddMovieAllActorsBox.DisplayMember = "DisplayActor";
+        }
+
+        public BindingList<Actor> ActorList
+        {
+            get { return actorList; }
+            set { actorList = value; }
+        }
+
+        #endregion
+
+        /// <summary>
         /// It is needed to have these functions to pass infomation from the Form back to the calling form.
         /// </summary>
         #region Functions returning infomation about the created/edited movie
@@ -185,75 +252,6 @@ namespace MovieCatalogue
             return newMovie;
         }
         #endregion
-
-        /// <summary>
-        /// Here you can find the constructors for the Form. Some calls to the Form requieres a Movie to be passed as a parameter, that's why there's a need for two.
-        /// </summary>
-        #region Constructors for the Form
-        public AddMovieForm()
-        {
-            InitializeComponent();
-            CommonInitialiser();           
-        }
-
-        public AddMovieForm(Movie movie)
-        {
-            InitializeComponent();
-
-            #region Set text fields from the imported Movie
-            AddMovieTitleBox.Text = movie.Title;
-            AddMovieYearBox.Text = movie.Year.ToString();
-
-            for (int i = 0; i < movie.ActorList.Count; i++)
-                actorsInMovie.Add(movie.ActorList[i]);
-
-            AddMovieCountryBox.Text = movie.Country;
-            AddMovieDirectorBox.Text = movie.Director;
-            AddMovieCompendiumBox.Text = movie.CompendiumNumber.ToString();
-            AddMovieDescriptionBox.Text = movie.Description;
-            AddMoviePlayTimeTextBox.Text = movie.PlayTime.ToString();
-            IMDBMoviePictureBox.Image = Base64ToImage(movie.Poster);
-
-            if (movie.LentOut == true)
-            {
-                checkBox_lentOut.Checked = true;
-                lentToTextBox.Text = movie.LendPerson;
-            }
-
-            #endregion
-
-            CommonInitialiser();
-        }
-
-        public void CommonInitialiser()
-        {
-            IMBDSearchListBox.DataSource = IMBDMovieList;
-            IMBDSearchListBox.DisplayMember = "DisplayTitle";
-            IMBDSearchListBox.ClearSelected();
-
-            AddMovieGenreBox.DataSource = Enum.GetValues(typeof(MovieCatalogue.Core.Genre));
-
-            if(actorList == null)
-                actorList = new BindingList<Actor>();
-
-            for (int i = 0; i < actorList.Count; i++)
-                actorDisplayList.Add(actorList[i]);
-
-            AddMovieActorsInMovieBox.DataSource = actorsInMovie;
-            AddMovieActorsInMovieBox.DisplayMember = "DisplayActor";
-            AddMovieAllActorsBox.DataSource = actorDisplayList;
-            AddMovieAllActorsBox.DisplayMember = "DisplayActor";
-        }
-
-        public BindingList<Actor> ActorList
-        {
-            get { return actorList; }
-            set { actorList = value; }
-        }
-        
-        #endregion
-
-
 
         #region Eventhandling functions.
 

@@ -199,7 +199,7 @@ namespace MovieCatalogue.Core
                 textReader.Close();
                 if (showMessage)
                 {
-                    MissingInfoForm mif = new MissingInfoForm("Actors where imported!");
+                    MissingInfoForm mif = new MissingInfoForm("Movies where imported!");
                     mif.ShowDialog();
                 }
             }
