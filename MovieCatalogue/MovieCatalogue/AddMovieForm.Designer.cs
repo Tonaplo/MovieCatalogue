@@ -75,11 +75,11 @@
             // 
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.TitleLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.TitleLabel.Location = new System.Drawing.Point(37, 10);
             this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(34, 14);
+            this.TitleLabel.Size = new System.Drawing.Size(31, 13);
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "Title*";
             // 
@@ -94,11 +94,11 @@
             // 
             this.GenreLabel.AutoSize = true;
             this.GenreLabel.BackColor = System.Drawing.Color.Transparent;
-            this.GenreLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GenreLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.GenreLabel.Location = new System.Drawing.Point(187, 9);
             this.GenreLabel.Name = "GenreLabel";
-            this.GenreLabel.Size = new System.Drawing.Size(45, 14);
+            this.GenreLabel.Size = new System.Drawing.Size(40, 13);
             this.GenreLabel.TabIndex = 2;
             this.GenreLabel.Text = "Genre*";
             // 
@@ -106,11 +106,11 @@
             // 
             this.YearLabel.AutoSize = true;
             this.YearLabel.BackColor = System.Drawing.Color.Transparent;
-            this.YearLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.YearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.YearLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.YearLabel.Location = new System.Drawing.Point(384, 9);
             this.YearLabel.Name = "YearLabel";
-            this.YearLabel.Size = new System.Drawing.Size(37, 14);
+            this.YearLabel.Size = new System.Drawing.Size(33, 13);
             this.YearLabel.TabIndex = 4;
             this.YearLabel.Text = "Year*";
             // 
@@ -148,11 +148,11 @@
             // 
             this.Addmoviedescriptionlabel.AutoSize = true;
             this.Addmoviedescriptionlabel.BackColor = System.Drawing.Color.Transparent;
-            this.Addmoviedescriptionlabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Addmoviedescriptionlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Addmoviedescriptionlabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Addmoviedescriptionlabel.Location = new System.Drawing.Point(15, 204);
             this.Addmoviedescriptionlabel.Name = "Addmoviedescriptionlabel";
-            this.Addmoviedescriptionlabel.Size = new System.Drawing.Size(111, 14);
+            this.Addmoviedescriptionlabel.Size = new System.Drawing.Size(96, 13);
             this.Addmoviedescriptionlabel.TabIndex = 7;
             this.Addmoviedescriptionlabel.Text = "Movie Description*";
             // 
@@ -169,11 +169,11 @@
             // 
             this.actorsLabelAddNewMovie.AutoSize = true;
             this.actorsLabelAddNewMovie.BackColor = System.Drawing.Color.Transparent;
-            this.actorsLabelAddNewMovie.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.actorsLabelAddNewMovie.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.actorsLabelAddNewMovie.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.actorsLabelAddNewMovie.Location = new System.Drawing.Point(12, 69);
             this.actorsLabelAddNewMovie.Name = "actorsLabelAddNewMovie";
-            this.actorsLabelAddNewMovie.Size = new System.Drawing.Size(119, 14);
+            this.actorsLabelAddNewMovie.Size = new System.Drawing.Size(104, 13);
             this.actorsLabelAddNewMovie.TabIndex = 9;
             this.actorsLabelAddNewMovie.Text = "Actors in the movie*:";
             // 
@@ -211,11 +211,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Location = new System.Drawing.Point(180, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 14);
+            this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 13;
             this.label1.Text = "All actors:";
             // 
@@ -279,11 +279,11 @@
             // 
             this.CountryLabel.AutoSize = true;
             this.CountryLabel.BackColor = System.Drawing.Color.Transparent;
-            this.CountryLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CountryLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.CountryLabel.Location = new System.Drawing.Point(9, 28);
             this.CountryLabel.Name = "CountryLabel";
-            this.CountryLabel.Size = new System.Drawing.Size(64, 28);
+            this.CountryLabel.Size = new System.Drawing.Size(59, 26);
             this.CountryLabel.TabIndex = 19;
             this.CountryLabel.Text = "Spoken\r\nLanguage*";
             // 
@@ -298,11 +298,11 @@
             // 
             this.DirectorLabel.AutoSize = true;
             this.DirectorLabel.BackColor = System.Drawing.Color.Transparent;
-            this.DirectorLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DirectorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DirectorLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.DirectorLabel.Location = new System.Drawing.Point(180, 41);
             this.DirectorLabel.Name = "DirectorLabel";
-            this.DirectorLabel.Size = new System.Drawing.Size(58, 14);
+            this.DirectorLabel.Size = new System.Drawing.Size(48, 13);
             this.DirectorLabel.TabIndex = 21;
             this.DirectorLabel.Text = "Director*";
             // 
@@ -330,11 +330,11 @@
             // 
             this.CompendiumLabel.AutoSize = true;
             this.CompendiumLabel.BackColor = System.Drawing.Color.Transparent;
-            this.CompendiumLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CompendiumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CompendiumLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.CompendiumLabel.Location = new System.Drawing.Point(338, 40);
             this.CompendiumLabel.Name = "CompendiumLabel";
-            this.CompendiumLabel.Size = new System.Drawing.Size(83, 14);
+            this.CompendiumLabel.Size = new System.Drawing.Size(72, 13);
             this.CompendiumLabel.TabIndex = 24;
             this.CompendiumLabel.Text = "Compendium*";
             // 
@@ -380,11 +380,11 @@
             // 
             this.PlayTimeLabel.AutoSize = true;
             this.PlayTimeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.PlayTimeLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayTimeLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PlayTimeLabel.Location = new System.Drawing.Point(360, 75);
             this.PlayTimeLabel.Name = "PlayTimeLabel";
-            this.PlayTimeLabel.Size = new System.Drawing.Size(63, 14);
+            this.PlayTimeLabel.Size = new System.Drawing.Size(57, 13);
             this.PlayTimeLabel.TabIndex = 30;
             this.PlayTimeLabel.Text = "Play Time*";
             // 
@@ -399,11 +399,11 @@
             // 
             this.PlayTimeMinutesLabel.AutoSize = true;
             this.PlayTimeMinutesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.PlayTimeMinutesLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayTimeMinutesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayTimeMinutesLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.PlayTimeMinutesLabel.Location = new System.Drawing.Point(470, 75);
             this.PlayTimeMinutesLabel.Name = "PlayTimeMinutesLabel";
-            this.PlayTimeMinutesLabel.Size = new System.Drawing.Size(30, 14);
+            this.PlayTimeMinutesLabel.Size = new System.Drawing.Size(26, 13);
             this.PlayTimeMinutesLabel.TabIndex = 32;
             this.PlayTimeMinutesLabel.Text = "min.";
             // 
@@ -445,11 +445,11 @@
             // 
             this.lentOutLabel.AutoSize = true;
             this.lentOutLabel.BackColor = System.Drawing.Color.Transparent;
-            this.lentOutLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lentOutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lentOutLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lentOutLabel.Location = new System.Drawing.Point(99, 352);
             this.lentOutLabel.Name = "lentOutLabel";
-            this.lentOutLabel.Size = new System.Drawing.Size(55, 14);
+            this.lentOutLabel.Size = new System.Drawing.Size(49, 13);
             this.lentOutLabel.TabIndex = 36;
             this.lentOutLabel.Text = "Lent out:";
             // 
@@ -468,11 +468,11 @@
             // 
             this.lentToLabel.AutoSize = true;
             this.lentToLabel.BackColor = System.Drawing.Color.Transparent;
-            this.lentToLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lentToLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lentToLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lentToLabel.Location = new System.Drawing.Point(187, 352);
             this.lentToLabel.Name = "lentToLabel";
-            this.lentToLabel.Size = new System.Drawing.Size(24, 14);
+            this.lentToLabel.Size = new System.Drawing.Size(23, 13);
             this.lentToLabel.TabIndex = 38;
             this.lentToLabel.Text = "To:";
             this.lentToLabel.Visible = false;

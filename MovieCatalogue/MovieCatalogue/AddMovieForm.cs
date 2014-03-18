@@ -22,9 +22,8 @@ namespace MovieCatalogue
         BindingList<Actor> actorsInMovie = new BindingList<Actor>();
         BindingList<Actor> actorList = Datahandler.LoadActors("actors.xml");
         BindingList<Actor> actorDisplayList = new BindingList<Actor>();
-        static bool erroresWhileParsing = false;
         List<Image> IMBDPosterList = new List<Image>();
-        IMDBBuffer bf = new IMDBBuffer();
+        
 
         /// <summary>
         /// Here you can find the constructors for the Form. Some calls to the Form requieres a Movie to be passed as a parameter, that's why there's a need for two.
@@ -92,6 +91,7 @@ namespace MovieCatalogue
         }
 
         #endregion
+
 
         /// <summary>
         /// It is needed to have these functions to pass infomation from the Form back to the calling form.
@@ -192,64 +192,6 @@ namespace MovieCatalogue
         public string LentToPerson
         {
             get { return lentToTextBox.Text; }
-        }
-        #endregion
-
-        #region Internal Functions
-
-        private Movie AddMovieFromSearch(MainPage movie)
-        {
-            Movie newMovie = new Movie();
-
-            newMovie.Title = movie.Title.Succes ? movie.Title.Data : "Error!";
-            try {newMovie.Title = movie.Title;}
-            catch (Exception exp) { newMovie.Title = "Error!"; erroresWhileParsing = true; }
-
-            try {newMovie.Year = movie.Year;}
-	        catch (Exception exp){newMovie.Year = 0;}
-
-            newMovie.Genre = Core.Genre.Action;
-
-            try {newMovie.Description = movie.Plot.ToString() + " Genre:" + movie.Genres.ToString();}
-            catch (Exception exp) { newMovie.Description = "Error!"; erroresWhileParsing = true; }
-
-            try {
-                actorsInMovie.Clear();
-                actorsInMovie.Add(new Actor(movie.Credits.Cast[0].Person.Name));
-                actorsInMovie.Add(new Actor(movie.Credits.Cast[1].Person.Name));
-                actorsInMovie.Add(new Actor(movie.Credits.Cast[2].Person.Name));
-                newMovie.ActorList = new List<Actor>();
-                newMovie.ActorList.AddRange(actorsInMovie);
-            }
-            catch (Exception exp) { erroresWhileParsing = true; }
-
-            newMovie.Country = "English";
-
-            try {newMovie.Director = movie.Credits.Directors[0].Person.Name;}
-            catch (Exception exp) { newMovie.Director = "Error!"; erroresWhileParsing = true; }
-
-            try {newMovie.Director = movie.Credits.Directors[0].Person.Name;}
-            catch (Exception exp) { newMovie.Director = "Error!"; erroresWhileParsing = true; }
-
-            newMovie.CompendiumNumber = "0";
-
-            try {newMovie.PlayTime = movie.Runtime.Data.Minutes + (movie.Runtime.Data.Hours * 60);}
-            catch (Exception exp) { newMovie.PlayTime = 0; erroresWhileParsing = true; }
-
-            try {newMovie.PlayTime = movie.Runtime.Data.Minutes + (movie.Runtime.Data.Hours * 60);}
-            catch (Exception exp) { newMovie.PlayTime = 0; erroresWhileParsing = true; }
-            
-            newMovie.Poster = "";
-            try { newMovie.Poster = movie.PosterURL.ToString(); }
-            catch (Exception exp) { newMovie.Poster = ""; erroresWhileParsing = true; }
-
-            newMovie.LentOut = false;
-            newMovie.LendPerson = "";
-
-            try { IMBDPosterList.Add(movie.PosterURL.Data.GetImage()); ; }
-            catch (Exception exp) { erroresWhileParsing = true; }
-            
-            return newMovie;
         }
         #endregion
 
@@ -449,37 +391,18 @@ namespace MovieCatalogue
                 if (IMDBSearch_textbox.Text != "")
                 {
                     IMBDMovieList.Clear();
-                    int moviecount = 5;
-                    if (bf.SearchTitle(IMDBSearch_textbox.Text).Results.Count < 5)
-                        moviecount = bf.SearchTitle(IMDBSearch_textbox.Text).Results.Count;
-
-                    erroresWhileParsing = false;
-
-                    for (int i = 0; i < moviecount; i++)
+                    ProgressForm pform = new ProgressForm(IMDBSearch_textbox.Text);
+                    if (pform.ShowDialog() == DialogResult.OK)
                     {
-                        try
+                        IMBDMovieList = pform.MovieList;
+                        IMBDPosterList = pform.PosterList;
+                        IMBDSearchListBox.DataSource = IMBDMovieList;
+
+                        if (pform.Errores)
                         {
-                            var mainMovie = bf.ReadMain(bf.SearchTitle(IMDBSearch_textbox.Text).Results[i].Id);
-                            if(mainMovie.MediaType == MediaType.Movie)
-                                IMBDMovieList.Add(AddMovieFromSearch(mainMovie));
+                            MissingInfoForm missingInfo = new MissingInfoForm("Some movie data was not found and might not be shown! Check boxes for the message \"Error!\"");
+                            missingInfo.ShowDialog();
                         }
-
-                        catch (Exception exp)
-                        {
-                            if (exp.Message == "File could not be loaded after 3 attempts.")
-                            {
-                                MissingInfoForm missingInfo = new MissingInfoForm("It seems you are not connected to the Internet. Please check your internet connection.");
-                                missingInfo.ShowDialog();
-                            }
-                        }
-
-                        finally { }
-                    }
-
-                    if (erroresWhileParsing)
-                    {
-                        MissingInfoForm missingInfo = new MissingInfoForm("Some data was not found and might not be shown! Check boxes for the message \"Error!\"");
-                        missingInfo.ShowDialog();
                     }
 
                     if (IMBDMovieList.Count == 0)
