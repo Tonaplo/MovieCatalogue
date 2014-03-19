@@ -385,12 +385,9 @@ namespace MovieCatalogue
         {
             if (e.KeyData == Keys.Enter)
             {
-                IMBDMovieList.Clear();
-                IMBDPosterList.Clear();
 
                 if (IMDBSearch_textbox.Text != "")
                 {
-                    IMBDMovieList.Clear();
                     ProgressForm pform = new ProgressForm(IMDBSearch_textbox.Text);
                     if (pform.ShowDialog() == DialogResult.OK)
                     {
