@@ -18,8 +18,8 @@ namespace MovieCatalogue
     {
         Movie selectedMovie = null;
         BindingList<Movie> movieList = Datahandler.LoadMovie("movie.xml");
-        BindingList<string> movieDisplayList = new BindingList<string>();
-        BindingList<string> movieRentedList = new BindingList<string>();
+        BindingList<Movie> movieDisplayList = new BindingList<Movie>();
+        BindingList<Movie> movieRentedList = new BindingList<Movie>();
         BindingList<Actor> actorList = Datahandler.LoadActors("actors.xml");
         private static ToolTip tt = new ToolTip();
 
@@ -31,12 +31,12 @@ namespace MovieCatalogue
                 movieList = new BindingList<Movie>();
 
             for (int i = 0; i < movieList.Count; i++)
-                movieDisplayList.Add(movieList[i].Title);
+                movieDisplayList.Add(movieList[i]);
 
             foreach (var item in movieList)
             {
                 if (item._lentOut == true)
-                    movieRentedList.Add(item.Title);
+                    movieRentedList.Add(item);
             }
 
             listBoxTitle.DataSource = movieDisplayList;
@@ -93,13 +93,13 @@ namespace MovieCatalogue
                 {
                     foreach (var item in movieList)
                     {
-                        movieDisplayList.Add(item.Title);
+                        movieDisplayList.Add(item);
                     }
-
-                    foreach (var item in movieList)
+                        
+                    foreach (var item in movieDisplayList)
                     {
                         if (item._lentOut == true)
-                            movieRentedList.Add(item.Title);
+                            movieRentedList.Add(item);
                     }
                 }
 
@@ -109,14 +109,14 @@ namespace MovieCatalogue
                     {
                         if (Core.Search.MainSearch(Searchbox.Text, movieList[i], MainTabPane.SelectedTab.Text))
                         {
-                            movieDisplayList.Add(movieList[i].Title);
+                            movieDisplayList.Add(movieList[i]);
                         }
                     }
 
-                    foreach (var item in movieList)
+                    foreach (var item in movieDisplayList)
                     {
                         if (item._lentOut == true)
-                            movieRentedList.Add(item.Title);
+                            movieRentedList.Add(item);
                     }
                 }
 
@@ -273,12 +273,12 @@ namespace MovieCatalogue
                 movieRentedList.Clear();
 
                 for (int i = 0; i < movieList.Count; i++)
-                    movieDisplayList.Add(movieList[i].Title);
+                    movieDisplayList.Add(movieList[i]);
 
                 foreach (var item in movieList)
                 {
                     if (item._lentOut == true)
-                        movieRentedList.Add(item.Title);
+                        movieRentedList.Add(item);
                 }
 
                 listBoxTitle.ResumeLayout();
@@ -307,38 +307,33 @@ namespace MovieCatalogue
         /// </summary>
         private void DeleteMovieButton_Click(object sender, EventArgs e)
         {
-            string title;
             Movie toBeDeleted = new Movie();
             if (MainTabPane.SelectedIndex == 0 && listBoxTitle.SelectedItem != null)
             {
-                title = listBoxTitle.SelectedItem.ToString();
-                toBeDeleted = movieList.First(x => x.Title == title);
-                movieList.Remove(toBeDeleted);
-                movieDisplayList.Remove(listBoxTitle.SelectedItem.ToString());
+                toBeDeleted = (Movie)listBoxTitle.SelectedItem;
+                movieList.Remove((Movie)listBoxTitle.SelectedItem);
+                movieDisplayList.Remove((Movie)listBoxTitle.SelectedItem);
             }
 
             else if (MainTabPane.SelectedIndex == 1 && listBoxGenre.SelectedItem != null)
             {
-                title = listBoxGenre.SelectedItem.ToString();
-                toBeDeleted = movieList.First(x => x.Title == title);
-                movieList.Remove(toBeDeleted);
-                movieDisplayList.Remove(listBoxGenre.SelectedItem.ToString());
+                toBeDeleted = (Movie)listBoxGenre.SelectedItem;
+                movieList.Remove((Movie)listBoxGenre.SelectedItem);
+                movieDisplayList.Remove((Movie)listBoxGenre.SelectedItem);
             }
 
             else if (MainTabPane.SelectedIndex == 2 && listBoxActor.SelectedItem != null)
             {
-                title = listBoxActor.SelectedItem.ToString();
-                toBeDeleted = movieList.First(x => x.Title == title);
-                movieList.Remove(toBeDeleted);
-                movieDisplayList.Remove(listBoxActor.SelectedItem.ToString());
+                toBeDeleted = (Movie)listBoxActor.SelectedItem;
+                movieList.Remove((Movie)listBoxActor.SelectedItem);
+                movieDisplayList.Remove((Movie)listBoxActor.SelectedItem);
             }
 
             else if (MainTabPane.SelectedIndex == 3 && listBoxRented.SelectedItem != null)
             {
-                title = listBoxRented.SelectedItem.ToString();
-                toBeDeleted = movieList.First(x => x.Title == title);
-                movieList.Remove(toBeDeleted);
-                movieDisplayList.Remove(listBoxRented.SelectedItem.ToString());
+                toBeDeleted = (Movie)listBoxRented.SelectedItem;
+                movieList.Remove((Movie)listBoxRented.SelectedItem);
+                movieDisplayList.Remove((Movie)listBoxRented.SelectedItem);
             }
             else
             {
@@ -349,7 +344,7 @@ namespace MovieCatalogue
 
             if (toBeDeleted != null && toBeDeleted._lentOut == true)
             {
-                movieRentedList.Remove(toBeDeleted.Title);
+                movieRentedList.Remove(toBeDeleted);
             }
 
             Datahandler.SaveMovie("movie.xml", movieList);
@@ -364,8 +359,7 @@ namespace MovieCatalogue
         {
             if (listBoxTitle.SelectedItem != null)
             {
-                string title = listBoxTitle.SelectedItem.ToString();
-                selectedMovie = movieList.First(x => x.Title == title);
+                selectedMovie = (Movie)listBoxTitle.SelectedItem;
                 SetLabels(selectedMovie);
             }
         }
@@ -377,8 +371,7 @@ namespace MovieCatalogue
         {
             if (listBoxGenre.SelectedItem != null)
             {
-                string title = listBoxGenre.SelectedItem.ToString();
-                selectedMovie = movieList.First(x => x.Title == title);
+                selectedMovie = (Movie)listBoxGenre.SelectedItem;
                 SetLabels(selectedMovie);
             }
         }
@@ -390,8 +383,7 @@ namespace MovieCatalogue
         {
             if (listBoxActor.SelectedItem != null)
             {
-                string title = listBoxActor.SelectedItem.ToString();
-                selectedMovie = movieList.First(x => x.Title == title);
+                selectedMovie = (Movie)listBoxActor.SelectedItem;
                 SetLabels(selectedMovie);
             }
         }
@@ -400,8 +392,7 @@ namespace MovieCatalogue
         {
             if (listBoxRented.SelectedItem != null)
             {
-                string title = listBoxRented.SelectedItem.ToString();
-                selectedMovie = movieList.First(x => x.Title == title);
+                selectedMovie = (Movie)listBoxRented.SelectedItem;
                 SetLabels(selectedMovie);
             }
         }
@@ -420,31 +411,18 @@ namespace MovieCatalogue
         private void WatchMovieButton_Click(object sender, EventArgs e)
         {
             Movie seeThisMovie = new Movie();
-            string title;
 
             if (MainTabPane.SelectedIndex == 0)
-            {
-                title = listBoxTitle.SelectedItem.ToString();
-                seeThisMovie = movieList.First(x => x.Title == title);
-            }
+                seeThisMovie = (Movie)listBoxTitle.SelectedItem;
 
             else if (MainTabPane.SelectedIndex == 1)
-            {
-                title = listBoxGenre.SelectedItem.ToString();
-                seeThisMovie = movieList.First(x => x.Title == title);
-            }
+                seeThisMovie = (Movie)listBoxGenre.SelectedItem;
 
             else if (MainTabPane.SelectedIndex == 2)
-            {
-                title = listBoxActor.SelectedItem.ToString();
-                seeThisMovie = movieList.First(x => x.Title == title);
-            }
+                seeThisMovie = (Movie)listBoxActor.SelectedItem;
 
             else if (MainTabPane.SelectedIndex == 3)
-            {
-                title = listBoxRented.SelectedItem.ToString();
-                seeThisMovie = movieList.First(x => x.Title == title);
-            }
+                seeThisMovie = (Movie)listBoxRented.SelectedItem;
 
             if (seeThisMovie != null)
             {
@@ -475,32 +453,18 @@ namespace MovieCatalogue
         private void EditButton_Click(object sender, EventArgs e)
         {
             Movie editedMovie = null;
-            string title;
-            
 
             if (MainTabPane.SelectedIndex == 0)
-            {
-                title = listBoxTitle.SelectedItem.ToString();
-                editedMovie = movieList.First(x => x.Title == title);
-            }
+                editedMovie = (Movie)listBoxTitle.SelectedItem;
 
             else if (MainTabPane.SelectedIndex == 1)
-            {
-                title = listBoxGenre.SelectedItem.ToString();
-                editedMovie = movieList.First(x => x.Title == title);
-            }
+                editedMovie = (Movie)listBoxGenre.SelectedItem;
 
             else if (MainTabPane.SelectedIndex == 2)
-            {
-                title = listBoxGenre.SelectedItem.ToString();
-                editedMovie = movieList.First(x => x.Title == title);
-            }
+                editedMovie = (Movie)listBoxActor.SelectedItem;
 
             else if (MainTabPane.SelectedIndex == 3)
-            {
-                title = listBoxRented.SelectedItem.ToString();
-                editedMovie = movieList.First(x => x.Title == title);
-            }
+                editedMovie = (Movie)listBoxRented.SelectedItem;
 
             AddMovieForm editMovieForm;
 
@@ -615,7 +579,6 @@ namespace MovieCatalogue
             }
         }
         #endregion
-
     }
 
 }
