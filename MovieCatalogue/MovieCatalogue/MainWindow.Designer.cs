@@ -53,6 +53,8 @@ namespace MovieCatalogue
             this.listBoxGenre = new System.Windows.Forms.ListBox();
             this.ActorTabPage = new System.Windows.Forms.TabPage();
             this.listBoxActor = new System.Windows.Forms.ListBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listBoxRented = new System.Windows.Forms.ListBox();
             this.MovieDetailsLabel = new System.Windows.Forms.Label();
             this.MovieTitleLabel = new System.Windows.Forms.Label();
             this.MovieYearLabel = new System.Windows.Forms.Label();
@@ -73,15 +75,13 @@ namespace MovieCatalogue
             this.ImportButton = new System.Windows.Forms.Button();
             this.labelRented = new System.Windows.Forms.Label();
             this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listBoxRented = new System.Windows.Forms.ListBox();
             this.MainTabPane.SuspendLayout();
             this.TitleTabPage.SuspendLayout();
             this.GenreTabPage.SuspendLayout();
             this.ActorTabPage.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MoviePosterBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddMovieButton
@@ -102,6 +102,7 @@ namespace MovieCatalogue
             this.Searchbox.Size = new System.Drawing.Size(96, 21);
             this.Searchbox.TabIndex = 2;
             this.Searchbox.TextChanged += new System.EventHandler(this.Searchbox_TextChanged);
+            this.Searchbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Searchbox_KeyDown);
             // 
             // DeleteMovieButton
             // 
@@ -205,6 +206,32 @@ namespace MovieCatalogue
             this.listBoxActor.Sorted = true;
             this.listBoxActor.TabIndex = 0;
             this.listBoxActor.SelectedIndexChanged += new System.EventHandler(this.listBoxYear_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listBoxRented);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(398, 360);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Rented";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // listBoxRented
+            // 
+            this.listBoxRented.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxRented.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxRented.FormattingEnabled = true;
+            this.listBoxRented.ItemHeight = 17;
+            this.listBoxRented.Location = new System.Drawing.Point(-1, 0);
+            this.listBoxRented.Name = "listBoxRented";
+            this.listBoxRented.Size = new System.Drawing.Size(400, 361);
+            this.listBoxRented.Sorted = true;
+            this.listBoxRented.TabIndex = 1;
+            this.listBoxRented.SelectedIndexChanged += new System.EventHandler(this.listBoxRented_SelectedIndexChanged);
             // 
             // MovieDetailsLabel
             // 
@@ -437,32 +464,6 @@ namespace MovieCatalogue
             // 
             this.movieBindingSource.DataSource = typeof(MovieCatalogue.Core.Movie);
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.listBoxRented);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(398, 360);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Rented";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // listBoxRented
-            // 
-            this.listBoxRented.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxRented.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxRented.FormattingEnabled = true;
-            this.listBoxRented.ItemHeight = 17;
-            this.listBoxRented.Location = new System.Drawing.Point(-1, 0);
-            this.listBoxRented.Name = "listBoxRented";
-            this.listBoxRented.Size = new System.Drawing.Size(400, 361);
-            this.listBoxRented.Sorted = true;
-            this.listBoxRented.TabIndex = 1;
-            this.listBoxRented.SelectedIndexChanged += new System.EventHandler(this.listBoxRented_SelectedIndexChanged);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -507,9 +508,9 @@ namespace MovieCatalogue
             this.TitleTabPage.ResumeLayout(false);
             this.GenreTabPage.ResumeLayout(false);
             this.ActorTabPage.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MoviePosterBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
-            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

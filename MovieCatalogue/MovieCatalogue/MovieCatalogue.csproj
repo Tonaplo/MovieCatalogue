@@ -102,6 +102,12 @@
     <Compile Include="AddMovieForm.Designer.cs">
       <DependentUpon>AddMovieForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Copy of ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Copy of ProgressForm.Designer.cs">
+      <DependentUpon>Copy of ProgressForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\Actor.cs" />
     <Compile Include="Core\Datahandler.cs" />
     <Compile Include="Core\GenreEnum.cs" />
@@ -135,6 +141,9 @@
     </Compile>
     <EmbeddedResource Include="AddMovieForm.resx">
       <DependentUpon>AddMovieForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Copy of ProgressForm.resx">
+      <DependentUpon>Copy of ProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

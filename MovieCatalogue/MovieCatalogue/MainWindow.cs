@@ -89,35 +89,15 @@ namespace MovieCatalogue
                 movieDisplayList.Clear();
                 movieRentedList.Clear();
 
-                if (Searchbox.Text.Length == 0)
+                foreach (var item in movieList)
                 {
-                    foreach (var item in movieList)
-                    {
-                        movieDisplayList.Add(item);
-                    }
-                        
-                    foreach (var item in movieDisplayList)
-                    {
-                        if (item._lentOut == true)
-                            movieRentedList.Add(item);
-                    }
+                    movieDisplayList.Add(item);
                 }
-
-                if (Searchbox.Text.Length > 0)
+                        
+                foreach (var item in movieDisplayList)
                 {
-                    for (int i = 0; i < movieList.Count; i++)
-                    {
-                        if (Core.Search.MainSearch(Searchbox.Text, movieList[i], MainTabPane.SelectedTab.Text))
-                        {
-                            movieDisplayList.Add(movieList[i]);
-                        }
-                    }
-
-                    foreach (var item in movieDisplayList)
-                    {
-                        if (item._lentOut == true)
-                            movieRentedList.Add(item);
-                    }
+                    if (item._lentOut == true)
+                        movieRentedList.Add(item);
                 }
 
                 switch (MainTabPane.SelectedIndex)
@@ -155,6 +135,43 @@ namespace MovieCatalogue
                 }
                 
                 this.ResetLabels();
+            }
+        }
+
+        public void SearchInitiated()
+        {
+            List<int> tobeRemoved = new List<int>();
+            for (int i = 0; i < movieDisplayList.Count; i++)
+            {
+                if (!Core.Search.MainSearch(Searchbox.Text, movieDisplayList[i], MainTabPane.SelectedTab.Text))
+                {
+                    tobeRemoved.Add(i);
+                }
+            }
+
+            var li = tobeRemoved.OrderByDescending(x => x);
+
+            foreach (var item in li)
+            {
+                movieDisplayList.RemoveAt(item);
+            }
+            this.ResetLabels();
+        }
+
+        public ListBox returnFocusedListBox(int pane)
+        {
+            switch (MainTabPane.SelectedIndex)
+            {
+                case 0:
+                    return listBoxTitle;
+                case 1:
+                    return listBoxGenre;
+                case 2:
+                    return listBoxActor;
+                case 3:
+                    return listBoxRented;
+                default:
+                    return null;
             }
         }
 
@@ -400,9 +417,16 @@ namespace MovieCatalogue
         /// <summary>
         /// This function sorts the Movie according to the text entered in the search box
         /// </summary>
-        private void Searchbox_TextChanged(object sender, EventArgs e)
+        private void Searchbox_KeyDown(object sender, KeyEventArgs e)
         {
-            ResetListBoxDisplays();
+            if (e.KeyCode == Keys.Back)
+            {
+                Searchbox.Clear();
+            }
+            else
+            {
+                SearchInitiated();
+            }
         }
 
         /// <summary>
@@ -578,7 +602,17 @@ namespace MovieCatalogue
                 }
             }
         }
+
+        private void Searchbox_TextChanged(object sender, EventArgs e)
+        {
+            if (Searchbox.Text.Length == 0)
+            {
+                ResetListBoxDisplays();
+            }
+        }
         #endregion
+
+        
     }
 
 }
