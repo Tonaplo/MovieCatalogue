@@ -42,19 +42,13 @@ namespace MovieCatalogue
             listBoxTitle.DataSource = movieDisplayList;
             listBoxTitle.DisplayMember = "DisplayTitle";
 
-            listBoxGenre.DataSource = movieDisplayList;
-            listBoxGenre.DisplayMember = "DisplayGenre";
-            listBoxGenre.ClearSelected();
-
-            listBoxActor.DataSource = movieDisplayList;
-            listBoxActor.DisplayMember = "DisplayTitle";
-            listBoxActor.ClearSelected();
-
-            listBoxRented.DataSource = movieRentedList;
-            listBoxRented.DisplayMember = "DisplayTitle";
-            listBoxRented.ClearSelected();
-
             ResetLabels();
+
+            comboBoxSearchBy.Items.Add("Title");
+            comboBoxSearchBy.Items.Add("Genre");
+            comboBoxSearchBy.Items.Add("Actor");
+            comboBoxSearchBy.Items.Add("Rented");
+            comboBoxSearchBy.SelectedItem = "Title";
         }
 
         #region Functions
@@ -100,79 +94,40 @@ namespace MovieCatalogue
                         movieRentedList.Add(item);
                 }
 
-                switch (MainTabPane.SelectedIndex)
-                {
-                    case 0:
-                        listBoxTitle.DataSource = null;
-                        //listBoxTitle.SuspendLayout();
-                        //listBoxTitle.ResumeLayout();
-                        listBoxTitle.DataSource = movieDisplayList;
-                        listBoxTitle.DisplayMember = "DisplayTitle";
-                        break;
-                    case 1:
-                        listBoxGenre.DataSource = null;
-                        //listBoxGenre.SuspendLayout();
-                        //listBoxGenre.ResumeLayout();
-                        listBoxGenre.DataSource = movieDisplayList;
-                        listBoxGenre.DisplayMember = "DisplayGenre";
-                        break;
-                    case 2:
-                        listBoxActor.DataSource = null;
-                        //listBoxActor.SuspendLayout();
-                        //listBoxActor.ResumeLayout();
-                        listBoxActor.DataSource = movieDisplayList;
-                        listBoxActor.DisplayMember = "DisplayTitle";
-                        break;
-                    case 3:
-                        listBoxRented.DataSource = null;
-                        //listBoxRented.SuspendLayout();
-                        //listBoxRented.ResumeLayout();
-                        listBoxRented.DataSource = movieRentedList;
-                        listBoxRented.DisplayMember = "DisplayTitle";
-                        break;
-                    default:
-                        break;
-                }
+                UpdateListBox();
                 
                 this.ResetLabels();
             }
         }
 
+        private void UpdateListBox()
+        {
+            listBoxTitle.DataSource = null;
+            listBoxTitle.DataSource = movieDisplayList;
+            listBoxTitle.DisplayMember = "DisplayTitle";
+        }
+
         public void SearchInitiated()
         {
+            movieDisplayList = new BindingList<Movie>();
             List<int> tobeRemoved = new List<int>();
-            for (int i = 0; i < movieDisplayList.Count; i++)
+            for (int i = 0; i < movieList.Count; i++)
             {
-                if (!Core.Search.MainSearch(Searchbox.Text, movieDisplayList[i], MainTabPane.SelectedTab.Text))
+                if (Core.Search.MainSearch(Searchbox.Text, movieList[i], comboBoxSearchBy.SelectedItem.ToString()))
                 {
                     tobeRemoved.Add(i);
                 }
             }
 
             var li = tobeRemoved.OrderByDescending(x => x);
+            NumberoOfMoviesLabel.Text = "This search yielded " + tobeRemoved.Count + " results.";
 
             foreach (var item in li)
             {
-                movieDisplayList.RemoveAt(item);
+                movieDisplayList.Add(movieList[item]);
             }
-            this.ResetLabels();
-        }
 
-        public ListBox returnFocusedListBox(int pane)
-        {
-            switch (MainTabPane.SelectedIndex)
-            {
-                case 0:
-                    return listBoxTitle;
-                case 1:
-                    return listBoxGenre;
-                case 2:
-                    return listBoxActor;
-                case 3:
-                    return listBoxRented;
-                default:
-                    return null;
-            }
+            this.UpdateListBox();
         }
 
         /// <summary>
@@ -191,10 +146,7 @@ namespace MovieCatalogue
             MoviePosterBox.Image = MoviePosterBox.InitialImage;
             NumberoOfMoviesLabel.Text = "Number of Movies: " + movieList.Count.ToString();
 
-            listBoxGenre.ClearSelected();
             listBoxTitle.ClearSelected();
-            listBoxActor.ClearSelected();
-            listBoxRented.ClearSelected();
         }
 
         /// <summary>
@@ -262,6 +214,7 @@ namespace MovieCatalogue
 
 
         #region Events
+
         /// <summary>
         /// This function describes what happens when you press the AddMovieButton
         /// </summary>
@@ -277,15 +230,6 @@ namespace MovieCatalogue
                 listBoxTitle.DataSource = null;
                 listBoxTitle.SuspendLayout();
 
-                listBoxGenre.DataSource = null;
-                listBoxGenre.SuspendLayout();
-
-                listBoxActor.DataSource = null;
-                listBoxActor.SuspendLayout();
-
-                listBoxRented.DataSource = null;
-                listBoxRented.SuspendLayout();
-
                 movieDisplayList.Clear();
                 movieRentedList.Clear();
 
@@ -299,21 +243,9 @@ namespace MovieCatalogue
                 }
 
                 listBoxTitle.ResumeLayout();
-                listBoxGenre.ResumeLayout();
-                listBoxActor.ResumeLayout();
-                listBoxRented.ResumeLayout();
 
                 listBoxTitle.DataSource = movieDisplayList;
                 listBoxTitle.DisplayMember = "DisplayTitle";
-
-                listBoxGenre.DataSource = movieDisplayList;
-                listBoxGenre.DisplayMember = "DisplayGenre";
-
-                listBoxActor.DataSource = movieDisplayList;
-                listBoxActor.DisplayMember = "DisplayTitle";
-
-                listBoxRented.DataSource = movieRentedList;
-                listBoxRented.DisplayMember = "DisplayTitle";
             }
 
             this.ResetLabels();
@@ -325,32 +257,11 @@ namespace MovieCatalogue
         private void DeleteMovieButton_Click(object sender, EventArgs e)
         {
             Movie toBeDeleted = new Movie();
-            if (MainTabPane.SelectedIndex == 0 && listBoxTitle.SelectedItem != null)
+            if (listBoxTitle.SelectedItem != null)
             {
                 toBeDeleted = (Movie)listBoxTitle.SelectedItem;
                 movieList.Remove((Movie)listBoxTitle.SelectedItem);
                 movieDisplayList.Remove((Movie)listBoxTitle.SelectedItem);
-            }
-
-            else if (MainTabPane.SelectedIndex == 1 && listBoxGenre.SelectedItem != null)
-            {
-                toBeDeleted = (Movie)listBoxGenre.SelectedItem;
-                movieList.Remove((Movie)listBoxGenre.SelectedItem);
-                movieDisplayList.Remove((Movie)listBoxGenre.SelectedItem);
-            }
-
-            else if (MainTabPane.SelectedIndex == 2 && listBoxActor.SelectedItem != null)
-            {
-                toBeDeleted = (Movie)listBoxActor.SelectedItem;
-                movieList.Remove((Movie)listBoxActor.SelectedItem);
-                movieDisplayList.Remove((Movie)listBoxActor.SelectedItem);
-            }
-
-            else if (MainTabPane.SelectedIndex == 3 && listBoxRented.SelectedItem != null)
-            {
-                toBeDeleted = (Movie)listBoxRented.SelectedItem;
-                movieList.Remove((Movie)listBoxRented.SelectedItem);
-                movieDisplayList.Remove((Movie)listBoxRented.SelectedItem);
             }
             else
             {
@@ -382,71 +293,13 @@ namespace MovieCatalogue
         }
 
         /// <summary>
-        /// This function describes what happens when you click an item in the main list box
-        /// </summary>
-        private void listBoxGenre_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxGenre.SelectedItem != null)
-            {
-                selectedMovie = (Movie)listBoxGenre.SelectedItem;
-                SetLabels(selectedMovie);
-            }
-        }
-
-        /// <summary>
-        /// This function describes what happens when you click an item in the main list box
-        /// </summary>
-        private void listBoxYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxActor.SelectedItem != null)
-            {
-                selectedMovie = (Movie)listBoxActor.SelectedItem;
-                SetLabels(selectedMovie);
-            }
-        }
-
-        private void listBoxRented_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxRented.SelectedItem != null)
-            {
-                selectedMovie = (Movie)listBoxRented.SelectedItem;
-                SetLabels(selectedMovie);
-            }
-        }
-
-        /// <summary>
-        /// This function sorts the Movie according to the text entered in the search box
-        /// </summary>
-        private void Searchbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Back)
-            {
-                Searchbox.Clear();
-            }
-            else
-            {
-                SearchInitiated();
-            }
-        }
-
-        /// <summary>
         /// This function describes what happens when you click the WatchMovieButton
         /// </summary>
         private void WatchMovieButton_Click(object sender, EventArgs e)
         {
             Movie seeThisMovie = new Movie();
 
-            if (MainTabPane.SelectedIndex == 0)
-                seeThisMovie = (Movie)listBoxTitle.SelectedItem;
-
-            else if (MainTabPane.SelectedIndex == 1)
-                seeThisMovie = (Movie)listBoxGenre.SelectedItem;
-
-            else if (MainTabPane.SelectedIndex == 2)
-                seeThisMovie = (Movie)listBoxActor.SelectedItem;
-
-            else if (MainTabPane.SelectedIndex == 3)
-                seeThisMovie = (Movie)listBoxRented.SelectedItem;
+            seeThisMovie = (Movie)listBoxTitle.SelectedItem;
 
             if (seeThisMovie != null)
             {
@@ -478,17 +331,7 @@ namespace MovieCatalogue
         {
             Movie editedMovie = null;
 
-            if (MainTabPane.SelectedIndex == 0)
-                editedMovie = (Movie)listBoxTitle.SelectedItem;
-
-            else if (MainTabPane.SelectedIndex == 1)
-                editedMovie = (Movie)listBoxGenre.SelectedItem;
-
-            else if (MainTabPane.SelectedIndex == 2)
-                editedMovie = (Movie)listBoxActor.SelectedItem;
-
-            else if (MainTabPane.SelectedIndex == 3)
-                editedMovie = (Movie)listBoxRented.SelectedItem;
+            editedMovie = (Movie)listBoxTitle.SelectedItem;
 
             AddMovieForm editMovieForm;
 
@@ -525,16 +368,6 @@ namespace MovieCatalogue
             }
 
             this.ResetLabels();
-        }
-
-        private void MainTabPane_MouseClick(object sender, MouseEventArgs e)
-        {
-            ResetLabels();
-            listBoxTitle.ClearSelected();
-            listBoxActor.ClearSelected();
-            listBoxGenre.ClearSelected();
-            listBoxRented.ClearSelected();
-            ResetListBoxDisplays();
         }
 
         private void Exportbutton_Click(object sender, EventArgs e)
@@ -576,17 +409,7 @@ namespace MovieCatalogue
             {
                 Movie seeThisMovie = new Movie();
 
-                if (MainTabPane.SelectedIndex == 0)
-                    seeThisMovie = (Movie)listBoxTitle.SelectedItem;
-
-                else if (MainTabPane.SelectedIndex == 1)
-                    seeThisMovie = (Movie)listBoxGenre.SelectedItem;
-
-                else if (MainTabPane.SelectedIndex == 2)
-                    seeThisMovie = (Movie)listBoxActor.SelectedItem;
-
-                else if (MainTabPane.SelectedIndex == 3)
-                    seeThisMovie = (Movie)listBoxRented.SelectedItem;
+                seeThisMovie = (Movie)listBoxTitle.SelectedItem;
 
                 if (seeThisMovie != null)
                 {
@@ -603,16 +426,24 @@ namespace MovieCatalogue
             }
         }
 
-        private void Searchbox_TextChanged(object sender, EventArgs e)
+        private void buttonSearch_Click(object sender, EventArgs e)
         {
-            if (Searchbox.Text.Length == 0)
-            {
-                ResetListBoxDisplays();
-            }
+            SearchInitiated();
         }
-        #endregion
 
-        
+        private void comboBoxSearchBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Searchbox.Text = "";
+            SearchInitiated();
+        }
+
+        private void Searchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+                SearchInitiated();
+        }
+
+        #endregion
     }
 
 }

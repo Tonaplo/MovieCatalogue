@@ -46,15 +46,6 @@ namespace MovieCatalogue
             this.AddMovieButton = new System.Windows.Forms.Button();
             this.Searchbox = new System.Windows.Forms.TextBox();
             this.DeleteMovieButton = new System.Windows.Forms.Button();
-            this.MainTabPane = new System.Windows.Forms.TabControl();
-            this.TitleTabPage = new System.Windows.Forms.TabPage();
-            this.listBoxTitle = new System.Windows.Forms.ListBox();
-            this.GenreTabPage = new System.Windows.Forms.TabPage();
-            this.listBoxGenre = new System.Windows.Forms.ListBox();
-            this.ActorTabPage = new System.Windows.Forms.TabPage();
-            this.listBoxActor = new System.Windows.Forms.ListBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listBoxRented = new System.Windows.Forms.ListBox();
             this.MovieDetailsLabel = new System.Windows.Forms.Label();
             this.MovieTitleLabel = new System.Windows.Forms.Label();
             this.MovieYearLabel = new System.Windows.Forms.Label();
@@ -70,16 +61,14 @@ namespace MovieCatalogue
             this.MoviePlayTimeLabel = new System.Windows.Forms.Label();
             this.MoviePosterBox = new System.Windows.Forms.PictureBox();
             this.NumberoOfMoviesLabel = new System.Windows.Forms.Label();
-            this.SearchLabel = new System.Windows.Forms.Label();
             this.Exportbutton = new System.Windows.Forms.Button();
             this.ImportButton = new System.Windows.Forms.Button();
             this.labelRented = new System.Windows.Forms.Label();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.listBoxTitle = new System.Windows.Forms.ListBox();
+            this.comboBoxSearchBy = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.MainTabPane.SuspendLayout();
-            this.TitleTabPage.SuspendLayout();
-            this.GenreTabPage.SuspendLayout();
-            this.ActorTabPage.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MoviePosterBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -97,11 +86,10 @@ namespace MovieCatalogue
             // 
             // Searchbox
             // 
-            this.Searchbox.Location = new System.Drawing.Point(65, 57);
+            this.Searchbox.Location = new System.Drawing.Point(13, 68);
             this.Searchbox.Name = "Searchbox";
-            this.Searchbox.Size = new System.Drawing.Size(96, 21);
+            this.Searchbox.Size = new System.Drawing.Size(400, 21);
             this.Searchbox.TabIndex = 2;
-            this.Searchbox.TextChanged += new System.EventHandler(this.Searchbox_TextChanged);
             this.Searchbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Searchbox_KeyDown);
             // 
             // DeleteMovieButton
@@ -114,124 +102,6 @@ namespace MovieCatalogue
             this.DeleteMovieButton.Text = "Delete Movie";
             this.DeleteMovieButton.UseVisualStyleBackColor = true;
             this.DeleteMovieButton.Click += new System.EventHandler(this.DeleteMovieButton_Click);
-            // 
-            // MainTabPane
-            // 
-            this.MainTabPane.AccessibleDescription = "";
-            this.MainTabPane.AccessibleName = "";
-            this.MainTabPane.Controls.Add(this.TitleTabPage);
-            this.MainTabPane.Controls.Add(this.GenreTabPage);
-            this.MainTabPane.Controls.Add(this.ActorTabPage);
-            this.MainTabPane.Controls.Add(this.tabPage1);
-            this.MainTabPane.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MainTabPane.Location = new System.Drawing.Point(14, 99);
-            this.MainTabPane.Name = "MainTabPane";
-            this.MainTabPane.SelectedIndex = 0;
-            this.MainTabPane.Size = new System.Drawing.Size(406, 388);
-            this.MainTabPane.TabIndex = 6;
-            this.MainTabPane.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainTabPane_MouseClick);
-            // 
-            // TitleTabPage
-            // 
-            this.TitleTabPage.Controls.Add(this.listBoxTitle);
-            this.TitleTabPage.Location = new System.Drawing.Point(4, 24);
-            this.TitleTabPage.Name = "TitleTabPage";
-            this.TitleTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TitleTabPage.Size = new System.Drawing.Size(398, 360);
-            this.TitleTabPage.TabIndex = 0;
-            this.TitleTabPage.Text = "Title";
-            this.TitleTabPage.UseVisualStyleBackColor = true;
-            // 
-            // listBoxTitle
-            // 
-            this.listBoxTitle.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxTitle.FormattingEnabled = true;
-            this.listBoxTitle.ItemHeight = 17;
-            this.listBoxTitle.Location = new System.Drawing.Point(0, 0);
-            this.listBoxTitle.Name = "listBoxTitle";
-            this.listBoxTitle.Size = new System.Drawing.Size(400, 361);
-            this.listBoxTitle.Sorted = true;
-            this.listBoxTitle.TabIndex = 0;
-            this.listBoxTitle.SelectedIndexChanged += new System.EventHandler(this.listBoxTitle_SelectedIndexChanged);
-            this.listBoxTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTitle_KeyDown);
-            // 
-            // GenreTabPage
-            // 
-            this.GenreTabPage.Controls.Add(this.listBoxGenre);
-            this.GenreTabPage.Location = new System.Drawing.Point(4, 24);
-            this.GenreTabPage.Name = "GenreTabPage";
-            this.GenreTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.GenreTabPage.Size = new System.Drawing.Size(398, 360);
-            this.GenreTabPage.TabIndex = 1;
-            this.GenreTabPage.Text = "Genre";
-            this.GenreTabPage.UseVisualStyleBackColor = true;
-            // 
-            // listBoxGenre
-            // 
-            this.listBoxGenre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxGenre.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxGenre.FormattingEnabled = true;
-            this.listBoxGenre.ItemHeight = 17;
-            this.listBoxGenre.Location = new System.Drawing.Point(0, 0);
-            this.listBoxGenre.Name = "listBoxGenre";
-            this.listBoxGenre.Size = new System.Drawing.Size(400, 361);
-            this.listBoxGenre.Sorted = true;
-            this.listBoxGenre.TabIndex = 0;
-            this.listBoxGenre.SelectedIndexChanged += new System.EventHandler(this.listBoxGenre_SelectedIndexChanged);
-            // 
-            // ActorTabPage
-            // 
-            this.ActorTabPage.Controls.Add(this.listBoxActor);
-            this.ActorTabPage.Location = new System.Drawing.Point(4, 24);
-            this.ActorTabPage.Name = "ActorTabPage";
-            this.ActorTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ActorTabPage.Size = new System.Drawing.Size(398, 360);
-            this.ActorTabPage.TabIndex = 2;
-            this.ActorTabPage.Text = "Actor";
-            this.ActorTabPage.UseVisualStyleBackColor = true;
-            // 
-            // listBoxActor
-            // 
-            this.listBoxActor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxActor.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxActor.FormattingEnabled = true;
-            this.listBoxActor.ItemHeight = 17;
-            this.listBoxActor.Location = new System.Drawing.Point(0, 0);
-            this.listBoxActor.Name = "listBoxActor";
-            this.listBoxActor.Size = new System.Drawing.Size(401, 361);
-            this.listBoxActor.Sorted = true;
-            this.listBoxActor.TabIndex = 0;
-            this.listBoxActor.SelectedIndexChanged += new System.EventHandler(this.listBoxYear_SelectedIndexChanged);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.listBoxRented);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(398, 360);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Rented";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // listBoxRented
-            // 
-            this.listBoxRented.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxRented.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxRented.FormattingEnabled = true;
-            this.listBoxRented.ItemHeight = 17;
-            this.listBoxRented.Location = new System.Drawing.Point(-1, 0);
-            this.listBoxRented.Name = "listBoxRented";
-            this.listBoxRented.Size = new System.Drawing.Size(400, 361);
-            this.listBoxRented.Sorted = true;
-            this.listBoxRented.TabIndex = 1;
-            this.listBoxRented.SelectedIndexChanged += new System.EventHandler(this.listBoxRented_SelectedIndexChanged);
             // 
             // MovieDetailsLabel
             // 
@@ -249,11 +119,11 @@ namespace MovieCatalogue
             // 
             this.MovieTitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.MovieTitleLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MovieTitleLabel.Font = new System.Drawing.Font("Century", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieTitleLabel.Font = new System.Drawing.Font("Century", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieTitleLabel.ForeColor = System.Drawing.Color.White;
             this.MovieTitleLabel.Location = new System.Drawing.Point(167, 9);
             this.MovieTitleLabel.Name = "MovieTitleLabel";
-            this.MovieTitleLabel.Size = new System.Drawing.Size(250, 71);
+            this.MovieTitleLabel.Size = new System.Drawing.Size(250, 36);
             this.MovieTitleLabel.TabIndex = 8;
             this.MovieTitleLabel.Text = "Welcome to the MovieCatalogue!";
             this.MovieTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -262,7 +132,7 @@ namespace MovieCatalogue
             // 
             this.MovieYearLabel.BackColor = System.Drawing.Color.Transparent;
             this.MovieYearLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MovieYearLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieYearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieYearLabel.ForeColor = System.Drawing.Color.White;
             this.MovieYearLabel.Location = new System.Drawing.Point(430, 56);
             this.MovieYearLabel.Name = "MovieYearLabel";
@@ -274,7 +144,7 @@ namespace MovieCatalogue
             // 
             this.MovieGenreLabel.BackColor = System.Drawing.Color.Transparent;
             this.MovieGenreLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MovieGenreLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieGenreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieGenreLabel.ForeColor = System.Drawing.Color.White;
             this.MovieGenreLabel.Location = new System.Drawing.Point(430, 78);
             this.MovieGenreLabel.Name = "MovieGenreLabel";
@@ -286,7 +156,7 @@ namespace MovieCatalogue
             // 
             this.MovieDescriptionBox.BackColor = System.Drawing.SystemColors.Control;
             this.MovieDescriptionBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MovieDescriptionBox.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieDescriptionBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieDescriptionBox.Location = new System.Drawing.Point(430, 283);
             this.MovieDescriptionBox.Multiline = true;
             this.MovieDescriptionBox.Name = "MovieDescriptionBox";
@@ -299,7 +169,7 @@ namespace MovieCatalogue
             // 
             this.DescriptionLabel.BackColor = System.Drawing.Color.Transparent;
             this.DescriptionLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DescriptionLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DescriptionLabel.ForeColor = System.Drawing.Color.White;
             this.DescriptionLabel.Location = new System.Drawing.Point(430, 260);
             this.DescriptionLabel.Name = "DescriptionLabel";
@@ -311,7 +181,7 @@ namespace MovieCatalogue
             // 
             this.MovieActorLabel.BackColor = System.Drawing.Color.Transparent;
             this.MovieActorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MovieActorLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieActorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieActorLabel.ForeColor = System.Drawing.Color.White;
             this.MovieActorLabel.Location = new System.Drawing.Point(430, 166);
             this.MovieActorLabel.Name = "MovieActorLabel";
@@ -323,7 +193,7 @@ namespace MovieCatalogue
             // 
             this.MovieCountryLabel.BackColor = System.Drawing.Color.Transparent;
             this.MovieCountryLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MovieCountryLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieCountryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieCountryLabel.ForeColor = System.Drawing.Color.White;
             this.MovieCountryLabel.Location = new System.Drawing.Point(430, 122);
             this.MovieCountryLabel.Name = "MovieCountryLabel";
@@ -335,7 +205,7 @@ namespace MovieCatalogue
             // 
             this.MovieDirectorLabel.BackColor = System.Drawing.Color.Transparent;
             this.MovieDirectorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MovieDirectorLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieDirectorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieDirectorLabel.ForeColor = System.Drawing.Color.White;
             this.MovieDirectorLabel.Location = new System.Drawing.Point(430, 144);
             this.MovieDirectorLabel.Name = "MovieDirectorLabel";
@@ -381,7 +251,7 @@ namespace MovieCatalogue
             // 
             this.MoviePlayTimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.MoviePlayTimeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MoviePlayTimeLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MoviePlayTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MoviePlayTimeLabel.ForeColor = System.Drawing.Color.White;
             this.MoviePlayTimeLabel.Location = new System.Drawing.Point(430, 100);
             this.MoviePlayTimeLabel.Name = "MoviePlayTimeLabel";
@@ -404,26 +274,14 @@ namespace MovieCatalogue
             // NumberoOfMoviesLabel
             // 
             this.NumberoOfMoviesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.NumberoOfMoviesLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumberoOfMoviesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NumberoOfMoviesLabel.ForeColor = System.Drawing.Color.White;
-            this.NumberoOfMoviesLabel.Location = new System.Drawing.Point(269, 102);
+            this.NumberoOfMoviesLabel.Location = new System.Drawing.Point(12, 121);
             this.NumberoOfMoviesLabel.Name = "NumberoOfMoviesLabel";
             this.NumberoOfMoviesLabel.Size = new System.Drawing.Size(151, 19);
             this.NumberoOfMoviesLabel.TabIndex = 22;
             this.NumberoOfMoviesLabel.Text = "Number of Movies: <>";
-            this.NumberoOfMoviesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // SearchLabel
-            // 
-            this.SearchLabel.AutoSize = true;
-            this.SearchLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SearchLabel.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchLabel.ForeColor = System.Drawing.Color.White;
-            this.SearchLabel.Location = new System.Drawing.Point(16, 64);
-            this.SearchLabel.Name = "SearchLabel";
-            this.SearchLabel.Size = new System.Drawing.Size(49, 14);
-            this.SearchLabel.TabIndex = 23;
-            this.SearchLabel.Text = "Search:";
+            this.NumberoOfMoviesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Exportbutton
             // 
@@ -451,7 +309,7 @@ namespace MovieCatalogue
             // 
             this.labelRented.BackColor = System.Drawing.Color.Transparent;
             this.labelRented.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelRented.Font = new System.Drawing.Font("Moire", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRented.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRented.ForeColor = System.Drawing.Color.Red;
             this.labelRented.Location = new System.Drawing.Point(430, 35);
             this.labelRented.Name = "labelRented";
@@ -459,6 +317,51 @@ namespace MovieCatalogue
             this.labelRented.TabIndex = 26;
             this.labelRented.Text = "WARNING! Rented to <>";
             this.labelRented.Visible = false;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(14, 95);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(149, 23);
+            this.buttonSearch.TabIndex = 27;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // listBoxTitle
+            // 
+            this.listBoxTitle.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxTitle.FormattingEnabled = true;
+            this.listBoxTitle.ItemHeight = 17;
+            this.listBoxTitle.Location = new System.Drawing.Point(13, 151);
+            this.listBoxTitle.Name = "listBoxTitle";
+            this.listBoxTitle.Size = new System.Drawing.Size(400, 327);
+            this.listBoxTitle.Sorted = true;
+            this.listBoxTitle.TabIndex = 0;
+            this.listBoxTitle.SelectedIndexChanged += new System.EventHandler(this.listBoxTitle_SelectedIndexChanged);
+            this.listBoxTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTitle_KeyDown);
+            // 
+            // comboBoxSearchBy
+            // 
+            this.comboBoxSearchBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSearchBy.FormattingEnabled = true;
+            this.comboBoxSearchBy.Location = new System.Drawing.Point(167, 117);
+            this.comboBoxSearchBy.Name = "comboBoxSearchBy";
+            this.comboBoxSearchBy.Size = new System.Drawing.Size(246, 23);
+            this.comboBoxSearchBy.TabIndex = 28;
+            this.comboBoxSearchBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxSearchBy_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(169, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(244, 19);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Search By:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // movieBindingSource
             // 
@@ -472,10 +375,13 @@ namespace MovieCatalogue
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(910, 499);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxSearchBy);
+            this.Controls.Add(this.listBoxTitle);
+            this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.labelRented);
             this.Controls.Add(this.ImportButton);
             this.Controls.Add(this.Exportbutton);
-            this.Controls.Add(this.SearchLabel);
             this.Controls.Add(this.NumberoOfMoviesLabel);
             this.Controls.Add(this.MoviePosterBox);
             this.Controls.Add(this.MoviePlayTimeLabel);
@@ -491,7 +397,6 @@ namespace MovieCatalogue
             this.Controls.Add(this.MovieYearLabel);
             this.Controls.Add(this.MovieTitleLabel);
             this.Controls.Add(this.MovieDetailsLabel);
-            this.Controls.Add(this.MainTabPane);
             this.Controls.Add(this.DeleteMovieButton);
             this.Controls.Add(this.Searchbox);
             this.Controls.Add(this.AddMovieButton);
@@ -504,11 +409,6 @@ namespace MovieCatalogue
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Main Window";
-            this.MainTabPane.ResumeLayout(false);
-            this.TitleTabPage.ResumeLayout(false);
-            this.GenreTabPage.ResumeLayout(false);
-            this.ActorTabPage.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MoviePosterBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -525,17 +425,10 @@ namespace MovieCatalogue
         private System.Windows.Forms.TextBox Searchbox;
         private System.Windows.Forms.Button DeleteMovieButton;
         private System.Windows.Forms.BindingSource movieBindingSource;
-        private System.Windows.Forms.TabControl MainTabPane;
-        private System.Windows.Forms.TabPage TitleTabPage;
-        private System.Windows.Forms.TabPage GenreTabPage;
-        private System.Windows.Forms.ListBox listBoxTitle;
-        private System.Windows.Forms.ListBox listBoxGenre;
         private Label MovieDetailsLabel;
         private Label MovieTitleLabel;
         private Label MovieYearLabel;
         private Label MovieGenreLabel;
-        private TabPage ActorTabPage;
-        private ListBox listBoxActor;
         private TextBox MovieDescriptionBox;
         private Label DescriptionLabel;
         private Label MovieActorLabel;
@@ -547,12 +440,13 @@ namespace MovieCatalogue
         private Label MoviePlayTimeLabel;
         private PictureBox MoviePosterBox;
         private Label NumberoOfMoviesLabel;
-        private Label SearchLabel;
         private Button Exportbutton;
         private Button ImportButton;
         private Label labelRented;
-        private TabPage tabPage1;
-        private ListBox listBoxRented;
+        private Button buttonSearch;
+        private ListBox listBoxTitle;
+        private ComboBox comboBoxSearchBy;
+        private Label label1;
     }
 }
 
