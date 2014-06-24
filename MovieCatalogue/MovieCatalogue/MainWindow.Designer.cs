@@ -69,6 +69,7 @@ namespace MovieCatalogue
             this.comboBoxSearchBy = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboBoxGenre = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.MoviePosterBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -367,6 +368,18 @@ namespace MovieCatalogue
             // 
             this.movieBindingSource.DataSource = typeof(MovieCatalogue.Core.Movie);
             // 
+            // comboBoxGenre
+            // 
+            this.comboBoxGenre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGenre.Enabled = false;
+            this.comboBoxGenre.FormattingEnabled = true;
+            this.comboBoxGenre.Location = new System.Drawing.Point(12, 66);
+            this.comboBoxGenre.Name = "comboBoxGenre";
+            this.comboBoxGenre.Size = new System.Drawing.Size(401, 23);
+            this.comboBoxGenre.TabIndex = 30;
+            this.comboBoxGenre.Visible = false;
+            this.comboBoxGenre.SelectedIndexChanged += new System.EventHandler(this.comboBoxGenre_SelectedIndexChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -375,6 +388,7 @@ namespace MovieCatalogue
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(910, 499);
+            this.Controls.Add(this.comboBoxGenre);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxSearchBy);
             this.Controls.Add(this.listBoxTitle);
@@ -447,6 +461,7 @@ namespace MovieCatalogue
         private ListBox listBoxTitle;
         private ComboBox comboBoxSearchBy;
         private Label label1;
+        private ComboBox comboBoxGenre;
     }
 }
 

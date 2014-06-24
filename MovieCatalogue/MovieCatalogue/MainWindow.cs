@@ -49,6 +49,7 @@ namespace MovieCatalogue
             comboBoxSearchBy.Items.Add("Actor");
             comboBoxSearchBy.Items.Add("Rented");
             comboBoxSearchBy.SelectedItem = "Title";
+            comboBoxGenre.DataSource = Enum.GetValues(typeof(MovieCatalogue.Core.Genre));
         }
 
         #region Functions
@@ -111,9 +112,16 @@ namespace MovieCatalogue
         {
             movieDisplayList = new BindingList<Movie>();
             List<int> tobeRemoved = new List<int>();
+            string searchItem = "";
+
+            if (comboBoxSearchBy.SelectedItem != "Genre")
+                searchItem = Searchbox.Text;
+            else
+                searchItem = comboBoxGenre.SelectedItem.ToString();
+
             for (int i = 0; i < movieList.Count; i++)
             {
-                if (Core.Search.MainSearch(Searchbox.Text, movieList[i], comboBoxSearchBy.SelectedItem.ToString()))
+                if (Core.Search.MainSearch(searchItem, movieList[i], comboBoxSearchBy.SelectedItem.ToString()))
                 {
                     tobeRemoved.Add(i);
                 }
@@ -208,6 +216,15 @@ namespace MovieCatalogue
             ms.Write(imageBytes, 0, imageBytes.Length);
             Image image = Image.FromStream(ms, true);
             return image;
+        }
+
+
+        private void SetCorrectSearchBox(bool searchByGenre)
+        {
+            Searchbox.Enabled = !searchByGenre;
+            Searchbox.Visible = !searchByGenre;
+            comboBoxGenre.Enabled = searchByGenre;
+            comboBoxGenre.Visible = searchByGenre;
         }
 
         #endregion
@@ -433,6 +450,11 @@ namespace MovieCatalogue
 
         private void comboBoxSearchBy_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBoxSearchBy.SelectedItem != "Genre")
+                SetCorrectSearchBox(false);
+            else
+                SetCorrectSearchBox(true);
+
             Searchbox.Text = "";
             SearchInitiated();
         }
@@ -441,6 +463,11 @@ namespace MovieCatalogue
         {
             if (e.KeyData == Keys.Enter)
                 SearchInitiated();
+        }
+
+        private void comboBoxGenre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchInitiated();
         }
 
         #endregion
