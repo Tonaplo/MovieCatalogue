@@ -19,7 +19,6 @@ namespace MovieCatalogue
         Movie selectedMovie = null;
         BindingList<Movie> movieList = Datahandler.LoadMovie("movie.xml");
         BindingList<Movie> movieDisplayList = new BindingList<Movie>();
-        BindingList<Movie> movieRentedList = new BindingList<Movie>();
         BindingList<Actor> actorList = Datahandler.LoadActors("actors.xml");
         private static ToolTip tt = new ToolTip();
 
@@ -30,14 +29,7 @@ namespace MovieCatalogue
             if (movieList == null)
                 movieList = new BindingList<Movie>();
 
-            for (int i = 0; i < movieList.Count; i++)
-                movieDisplayList.Add(movieList[i]);
-
-            foreach (var item in movieList)
-            {
-                if (item._lentOut == true)
-                    movieRentedList.Add(item);
-            }
+            ResetDisplayedListOfMovies();
 
             listBoxTitle.DataSource = movieDisplayList;
             listBoxTitle.DisplayMember = "DisplayTitle";
@@ -81,24 +73,24 @@ namespace MovieCatalogue
         {
             if (movieList != null)
             {
-                movieDisplayList.Clear();
-                movieRentedList.Clear();
+                listBoxTitle.DataSource = null;
 
-                foreach (var item in movieList)
-                {
-                    movieDisplayList.Add(item);
-                }
-                        
-                foreach (var item in movieDisplayList)
-                {
-                    if (item._lentOut == true)
-                        movieRentedList.Add(item);
-                }
+                ResetDisplayedListOfMovies();
 
                 UpdateListBox();
-                
+
+                listBoxTitle.DataSource = movieDisplayList;
+                listBoxTitle.DisplayMember = "DisplayTitle";
+
                 this.ResetLabels();
             }
+        }
+
+        private void ResetDisplayedListOfMovies()
+        {
+            movieDisplayList.Clear();
+            var temp = movieList;
+            movieDisplayList = temp;
         }
 
         private void UpdateListBox()
@@ -218,13 +210,27 @@ namespace MovieCatalogue
             return image;
         }
 
-
         private void SetCorrectSearchBox(bool searchByGenre)
         {
             Searchbox.Enabled = !searchByGenre;
             Searchbox.Visible = !searchByGenre;
             comboBoxGenre.Enabled = searchByGenre;
             comboBoxGenre.Visible = searchByGenre;
+        }
+
+        private void LaunchImportDialogue()
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Please choose a folder to load your movie and actor lists from";
+
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                movieList = Datahandler.LoadFromFolderMovie(Path.Combine(fbd.SelectedPath, "Movies.xml"), true);
+                actorList = Datahandler.LoadFromFolderActors(Path.Combine(fbd.SelectedPath, "Actors.xml"), true);
+                Datahandler.SaveActors("actors.xml", actorList);
+
+                ResetListBoxDisplays();
+            }
         }
 
         #endregion
@@ -244,28 +250,10 @@ namespace MovieCatalogue
                 movieList.Add(new Movie(newMovieForm.Title, newMovieForm.Year, newMovieForm.Genre, newMovieForm.Description, newMovieForm.ActorsInMovie, newMovieForm.Country, newMovieForm.Director, newMovieForm.CompendiumNumber, newMovieForm.PlayTime, ImageToBase64(newMovieForm.Poster, System.Drawing.Imaging.ImageFormat.Jpeg), newMovieForm.LentStatus, newMovieForm.LentToPerson));
                 Datahandler.SaveMovie("movie.xml", movieList);
 
-                listBoxTitle.DataSource = null;
-                listBoxTitle.SuspendLayout();
-
-                movieDisplayList.Clear();
-                movieRentedList.Clear();
-
-                for (int i = 0; i < movieList.Count; i++)
-                    movieDisplayList.Add(movieList[i]);
-
-                foreach (var item in movieList)
-                {
-                    if (item._lentOut == true)
-                        movieRentedList.Add(item);
-                }
-
-                listBoxTitle.ResumeLayout();
-
-                listBoxTitle.DataSource = movieDisplayList;
-                listBoxTitle.DisplayMember = "DisplayTitle";
+                ResetListBoxDisplays();
+                
             }
 
-            this.ResetLabels();
         }
 
         /// <summary>
@@ -285,11 +273,6 @@ namespace MovieCatalogue
                 MissingInfoForm noMovie = new MissingInfoForm("You have not selected a movie!");
                 noMovie.ShowDialog();
                 return;
-            }
-
-            if (toBeDeleted != null && toBeDeleted._lentOut == true)
-            {
-                movieRentedList.Remove(toBeDeleted);
             }
 
             Datahandler.SaveMovie("movie.xml", movieList);
@@ -407,17 +390,7 @@ namespace MovieCatalogue
 
         private void ImportButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Please choose a folder to load your movie and actor lists from";
-
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                movieList = Datahandler.LoadFromFolderMovie(Path.Combine(fbd.SelectedPath, "Movies.xml"), true);
-                actorList = Datahandler.LoadFromFolderActors(Path.Combine(fbd.SelectedPath, "Actors.xml"), true);
-                Datahandler.SaveActors("actors.xml", actorList);
-
-                ResetListBoxDisplays();
-            }
+            LaunchImportDialogue();
         }
 
         private void listBoxTitle_KeyDown(object sender, KeyEventArgs e)
@@ -470,7 +443,21 @@ namespace MovieCatalogue
             SearchInitiated();
         }
 
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            if (movieList == null || movieList.Count == 0)
+            {
+                string message = "It seems that you have no data in this catalogue! Would you like to import data?";
+                var result = System.Windows.Forms.MessageBox.Show(message, "No data found!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                    LaunchImportDialogue();
+            }
+        }
+
         #endregion
+
+        
     }
 
 }

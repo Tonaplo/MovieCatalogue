@@ -182,6 +182,7 @@ namespace MovieCatalogue.Core
             BindingList<Movie> t = null;
             TextReader textReader = null;
             XmlSerializer deserializer = new XmlSerializer(typeof(BindingList<Movie>));
+            bool succes = false;
 
             try
             {
@@ -197,11 +198,8 @@ namespace MovieCatalogue.Core
             {
                 t = (BindingList<Movie>)deserializer.Deserialize(textReader);
                 textReader.Close();
-                if (showMessage)
-                {
-                    MissingInfoForm mif = new MissingInfoForm("Movies where imported!");
-                    mif.ShowDialog();
-                }
+                succes = true;
+                
             }
             catch (Exception exp)
             {
@@ -232,11 +230,6 @@ namespace MovieCatalogue.Core
                 textReader = new StreamReader(actorpath);
                 t = (BindingList<Actor>)deserializer.Deserialize(textReader);
                 textReader.Close();
-                if (showMessage)
-                {
-                    MissingInfoForm mif = new MissingInfoForm("Actors where imported!");
-                    mif.ShowDialog();
-                }
             }
             catch (Exception exp)
             {

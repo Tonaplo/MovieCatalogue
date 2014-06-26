@@ -423,6 +423,7 @@ namespace MovieCatalogue
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "Main Window";
+            this.Shown += new System.EventHandler(this.MainWindow_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.MoviePosterBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
             this.ResumeLayout(false);
