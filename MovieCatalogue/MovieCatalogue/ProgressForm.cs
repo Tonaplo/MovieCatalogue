@@ -233,8 +233,6 @@ namespace MovieCatalogue
             catch (Exception exp) { newMovie.Year = 0; }
             finally { SetProgress((int)percentPermovie * 2 + (int)percentOfWhole); }
 
-            newMovie.Genre = Core.Genre.Action;
-
             try { newMovie.Description = movie.Plot.ToString() + " Genre:" + movie.Genres.ToString(); }
             catch (Exception exp) { newMovie.Description = "Error!"; erroresWhileParsing = true; }
             finally { SetProgress((int)percentPermovie * 3 + (int)percentOfWhole); }

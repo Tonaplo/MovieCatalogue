@@ -149,7 +149,7 @@ namespace MovieCatalogue
             this.MovieGenreLabel.ForeColor = System.Drawing.Color.White;
             this.MovieGenreLabel.Location = new System.Drawing.Point(430, 78);
             this.MovieGenreLabel.Name = "MovieGenreLabel";
-            this.MovieGenreLabel.Size = new System.Drawing.Size(207, 18);
+            this.MovieGenreLabel.Size = new System.Drawing.Size(207, 54);
             this.MovieGenreLabel.TabIndex = 10;
             this.MovieGenreLabel.Text = "Genre: <Genre>";
             // 
@@ -184,9 +184,9 @@ namespace MovieCatalogue
             this.MovieActorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MovieActorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieActorLabel.ForeColor = System.Drawing.Color.White;
-            this.MovieActorLabel.Location = new System.Drawing.Point(430, 166);
+            this.MovieActorLabel.Location = new System.Drawing.Point(430, 202);
             this.MovieActorLabel.Name = "MovieActorLabel";
-            this.MovieActorLabel.Size = new System.Drawing.Size(207, 90);
+            this.MovieActorLabel.Size = new System.Drawing.Size(207, 54);
             this.MovieActorLabel.TabIndex = 13;
             this.MovieActorLabel.Text = "Actors: <Actors in Movie>";
             // 
@@ -196,7 +196,7 @@ namespace MovieCatalogue
             this.MovieCountryLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MovieCountryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieCountryLabel.ForeColor = System.Drawing.Color.White;
-            this.MovieCountryLabel.Location = new System.Drawing.Point(430, 122);
+            this.MovieCountryLabel.Location = new System.Drawing.Point(430, 158);
             this.MovieCountryLabel.Name = "MovieCountryLabel";
             this.MovieCountryLabel.Size = new System.Drawing.Size(207, 18);
             this.MovieCountryLabel.TabIndex = 14;
@@ -208,7 +208,7 @@ namespace MovieCatalogue
             this.MovieDirectorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MovieDirectorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovieDirectorLabel.ForeColor = System.Drawing.Color.White;
-            this.MovieDirectorLabel.Location = new System.Drawing.Point(430, 144);
+            this.MovieDirectorLabel.Location = new System.Drawing.Point(430, 180);
             this.MovieDirectorLabel.Name = "MovieDirectorLabel";
             this.MovieDirectorLabel.Size = new System.Drawing.Size(207, 18);
             this.MovieDirectorLabel.TabIndex = 15;
@@ -254,7 +254,7 @@ namespace MovieCatalogue
             this.MoviePlayTimeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MoviePlayTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MoviePlayTimeLabel.ForeColor = System.Drawing.Color.White;
-            this.MoviePlayTimeLabel.Location = new System.Drawing.Point(430, 100);
+            this.MoviePlayTimeLabel.Location = new System.Drawing.Point(430, 136);
             this.MoviePlayTimeLabel.Name = "MoviePlayTimeLabel";
             this.MoviePlayTimeLabel.Size = new System.Drawing.Size(207, 18);
             this.MoviePlayTimeLabel.TabIndex = 19;

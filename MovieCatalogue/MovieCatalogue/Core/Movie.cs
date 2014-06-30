@@ -18,12 +18,12 @@ namespace MovieCatalogue.Core
         public Movie() { }
 
 
-        public Movie(string title, int year, Genre genre, string description, BindingList<Actor> actorList, string country, string director, string compendiumNumber, int playTime, string poster, bool lent, string lendPerson)
+        public Movie(string title, int year, List<Genre> genres, string description, BindingList<Actor> actorList, string country, string director, string compendiumNumber, int playTime, string poster, bool lent, string lendPerson)
             :this()
         {
             this._title = title;
             this._year = year;
-            this._genre = genre;
+            this._genres = genres;
             this._description = description;
             this._actorList.AddRange(actorList);
             this._country = country;
@@ -38,7 +38,7 @@ namespace MovieCatalogue.Core
 
         internal string _title;
         internal int _year;
-        internal Genre _genre;
+        internal List<Genre> _genres;
         internal string _description;
         internal List<Actor> _actorList = new List<Actor>();
         internal string _country;
@@ -61,10 +61,10 @@ namespace MovieCatalogue.Core
             set { _year = value; }
         }
 
-        public Genre Genre
+        public List<Genre> Genres
         {
-            get { return _genre; }
-            set { _genre = value; }
+            get { return _genres; }
+            set { _genres = value; }
         }
 
         public string Description
@@ -128,7 +128,7 @@ namespace MovieCatalogue.Core
 
         public string DisplayGenre
         {
-            get { return string.Format("{0}: {1}", Genre, Title); }
+            get { return string.Format("{0}: {1}", Genres, Title); }
         }
 
         public override string ToString()

@@ -31,11 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddMovieForm));
             this.TitleLabel = new System.Windows.Forms.Label();
             this.AddMovieTitleBox = new System.Windows.Forms.TextBox();
-            this.GenreLabel = new System.Windows.Forms.Label();
             this.YearLabel = new System.Windows.Forms.Label();
             this.DoneButton = new System.Windows.Forms.Button();
             this.AddMovieYearBox = new System.Windows.Forms.TextBox();
-            this.AddMovieGenreBox = new System.Windows.Forms.ComboBox();
             this.Addmoviedescriptionlabel = new System.Windows.Forms.Label();
             this.AddMovieDescriptionBox = new System.Windows.Forms.TextBox();
             this.actorsLabelAddNewMovie = new System.Windows.Forms.Label();
@@ -68,6 +66,7 @@
             this.checkBox_lentOut = new System.Windows.Forms.CheckBox();
             this.lentToLabel = new System.Windows.Forms.Label();
             this.lentToTextBox = new System.Windows.Forms.TextBox();
+            this.buttonGenre = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.IMDBMoviePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,18 +88,6 @@
             this.AddMovieTitleBox.Name = "AddMovieTitleBox";
             this.AddMovieTitleBox.Size = new System.Drawing.Size(100, 20);
             this.AddMovieTitleBox.TabIndex = 1;
-            // 
-            // GenreLabel
-            // 
-            this.GenreLabel.AutoSize = true;
-            this.GenreLabel.BackColor = System.Drawing.Color.Transparent;
-            this.GenreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GenreLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.GenreLabel.Location = new System.Drawing.Point(187, 9);
-            this.GenreLabel.Name = "GenreLabel";
-            this.GenreLabel.Size = new System.Drawing.Size(40, 13);
-            this.GenreLabel.TabIndex = 2;
-            this.GenreLabel.Text = "Genre*";
             // 
             // YearLabel
             // 
@@ -134,15 +121,6 @@
             this.AddMovieYearBox.Name = "AddMovieYearBox";
             this.AddMovieYearBox.Size = new System.Drawing.Size(80, 20);
             this.AddMovieYearBox.TabIndex = 3;
-            // 
-            // AddMovieGenreBox
-            // 
-            this.AddMovieGenreBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AddMovieGenreBox.FormattingEnabled = true;
-            this.AddMovieGenreBox.Location = new System.Drawing.Point(233, 2);
-            this.AddMovieGenreBox.Name = "AddMovieGenreBox";
-            this.AddMovieGenreBox.Size = new System.Drawing.Size(100, 21);
-            this.AddMovieGenreBox.TabIndex = 2;
             // 
             // Addmoviedescriptionlabel
             // 
@@ -486,6 +464,18 @@
             this.lentToTextBox.TabIndex = 39;
             this.lentToTextBox.Visible = false;
             // 
+            // buttonGenre
+            // 
+            this.buttonGenre.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonGenre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonGenre.Location = new System.Drawing.Point(183, 4);
+            this.buttonGenre.Name = "buttonGenre";
+            this.buttonGenre.Size = new System.Drawing.Size(150, 23);
+            this.buttonGenre.TabIndex = 40;
+            this.buttonGenre.Text = "Genres";
+            this.buttonGenre.UseVisualStyleBackColor = false;
+            this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
+            // 
             // AddMovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,6 +483,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(714, 382);
+            this.Controls.Add(this.buttonGenre);
             this.Controls.Add(this.lentToTextBox);
             this.Controls.Add(this.lentToLabel);
             this.Controls.Add(this.checkBox_lentOut);
@@ -528,8 +519,6 @@
             this.Controls.Add(this.DoneButton);
             this.Controls.Add(this.AddMovieYearBox);
             this.Controls.Add(this.YearLabel);
-            this.Controls.Add(this.AddMovieGenreBox);
-            this.Controls.Add(this.GenreLabel);
             this.Controls.Add(this.AddMovieTitleBox);
             this.Controls.Add(this.TitleLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -546,11 +535,9 @@
 
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.TextBox AddMovieTitleBox;
-        private System.Windows.Forms.Label GenreLabel;
         private System.Windows.Forms.Label YearLabel;
         private System.Windows.Forms.Button DoneButton;
         private System.Windows.Forms.TextBox AddMovieYearBox;
-        private System.Windows.Forms.ComboBox AddMovieGenreBox;
         private System.Windows.Forms.Label Addmoviedescriptionlabel;
         private System.Windows.Forms.TextBox AddMovieDescriptionBox;
         private System.Windows.Forms.Label actorsLabelAddNewMovie;
@@ -583,5 +570,6 @@
         private System.Windows.Forms.CheckBox checkBox_lentOut;
         private System.Windows.Forms.Label lentToLabel;
         private System.Windows.Forms.TextBox lentToTextBox;
+        private System.Windows.Forms.Button buttonGenre;
     }
 }

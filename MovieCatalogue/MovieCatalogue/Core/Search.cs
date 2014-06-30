@@ -14,12 +14,23 @@ namespace MovieCatalogue.Core
             int index=0;
             if (tab == "Title" && movie.Title.ToLower().Contains(search.ToLower()))
                 return true;
-            else if (tab == "Genre" && movie.Genre.ToString().ToLower().Contains(search.ToLower()))
+            else if (tab == "Genre" && GenreSearch(movie._genres,search))
                 return true;
             else if (tab == "Actor" && ActorSearch(search, movie._actorList))
                 return true;
             else if (tab == "Rented" && movie._lentOut)
                 return true;
+
+            return false;
+        }
+
+        private static bool GenreSearch(List<Core.Genre> genres, string search)
+        {
+            foreach (var item in genres)
+            {
+                if (item.ToString().ToLower() == search.ToLower())
+                    return true;
+            }
 
             return false;
         }

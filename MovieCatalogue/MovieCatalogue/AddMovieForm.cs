@@ -22,6 +22,7 @@ namespace MovieCatalogue
         BindingList<Actor> actorsInMovie = new BindingList<Actor>();
         BindingList<Actor> actorList = Datahandler.LoadActors("actors.xml");
         BindingList<Actor> actorDisplayList = new BindingList<Actor>();
+        List<Core.Genre> genres = new List<Core.Genre>();
         List<Image> IMBDPosterList = new List<Image>();
         
 
@@ -44,6 +45,7 @@ namespace MovieCatalogue
             #region Set text fields from the imported Movie
             AddMovieTitleBox.Text = movie.Title;
             AddMovieYearBox.Text = movie.Year.ToString();
+            genres = movie._genres;
 
             for (int i = 0; i < movie.ActorList.Count; i++)
                 actorsInMovie.Add(movie.ActorList[i]);
@@ -71,8 +73,6 @@ namespace MovieCatalogue
             IMBDSearchListBox.DataSource = IMBDMovieList;
             IMBDSearchListBox.DisplayMember = "DisplayTitle";
             IMBDSearchListBox.ClearSelected();
-
-            AddMovieGenreBox.DataSource = Enum.GetValues(typeof(MovieCatalogue.Core.Genre));
 
             if (actorList == null)
                 actorList = new BindingList<Actor>();
@@ -104,9 +104,9 @@ namespace MovieCatalogue
             get { return AddMovieTitleBox.Text; }
         }
 
-        public Core.Genre Genre
+        public List<Core.Genre> Genres
         {
-            get { return (Core.Genre)AddMovieGenreBox.SelectedItem; }
+            get { return genres; }
         }
 
         public int Year
@@ -205,7 +205,7 @@ namespace MovieCatalogue
         /// </summary>
         private void DoneButton_Click(object sender, EventArgs e)
         {
-            if (this.AddMovieTitleBox.Text == "" || this.AddMovieYearBox.Text == "" || this.AddMovieGenreBox.Text == "" || this.AddMovieDescriptionBox.Text == "" || this.actorsInMovie.Count == 0 || this.AddMovieCountryBox.Text == "" || this.AddMovieDirectorBox.Text == "" || this.AddMovieCompendiumBox.Text == "" || this.AddMoviePlayTimeTextBox.Text == "")
+            if (this.AddMovieTitleBox.Text == "" || this.AddMovieYearBox.Text == "" || genres.Count == 0 || this.AddMovieDescriptionBox.Text == "" || this.actorsInMovie.Count == 0 || this.AddMovieCountryBox.Text == "" || this.AddMovieDirectorBox.Text == "" || this.AddMovieCompendiumBox.Text == "" || this.AddMoviePlayTimeTextBox.Text == "")
             {
                 MissingInfoForm missingInfo = new MissingInfoForm("Some infomation is missing! Make sure you have filled out all of the required fields. They are marked with a star!");
                 missingInfo.ShowDialog();
@@ -450,6 +450,15 @@ namespace MovieCatalogue
             this.Close();
         }
 
+        private void buttonGenre_Click(object sender, EventArgs e)
+        {
+            GenreSelectionForm gsf = new GenreSelectionForm();
+            gsf.ShowDialog();
+            genres = gsf.SelectedGenres;
+        }
+
         #endregion 
+
+        
     }
 }

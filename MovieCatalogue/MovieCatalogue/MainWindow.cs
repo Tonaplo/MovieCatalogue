@@ -79,14 +79,9 @@ namespace MovieCatalogue
         {
             if (movieList != null)
             {
-                listBoxTitle.DataSource = null;
-
                 ResetDisplayedListOfMovies();
 
                 UpdateListBox();
-
-                listBoxTitle.DataSource = movieDisplayList;
-                listBoxTitle.DisplayMember = "DisplayTitle";
 
                 this.ResetLabels();
             }
@@ -94,9 +89,7 @@ namespace MovieCatalogue
 
         private void ResetDisplayedListOfMovies()
         {
-            movieDisplayList.Clear();
-            var temp = movieList;
-            movieDisplayList = temp;
+            movieDisplayList = new BindingList<Movie>(movieList);
         }
 
         private void UpdateListBox()
@@ -155,6 +148,27 @@ namespace MovieCatalogue
             listBoxTitle.ClearSelected();
         }
 
+        private string ReturnGenreString(List<Core.Genre> list)
+        {
+            string ret = "";
+            if (list.Count > 2)
+            {
+                for (int i = 0; i < list.Count - 2; i++)
+                {
+                    ret += list[i].ToString() + ", ";
+                }
+                ret += list[list.Count - 2].ToString() + " and " + list[list.Count - 1].ToString();
+            }
+            else if (list.Count == 2)
+                ret = list[0].ToString() + " and " + list[1].ToString();
+            else if (list.Count == 1)
+                ret = list[0].ToString();
+            else if (list.Count == 0)
+                ret = "No genre listed!";
+
+            return ret;
+        }
+
         /// <summary>
         /// This function sets all of the labels describing the Movie
         /// </summary>
@@ -162,7 +176,7 @@ namespace MovieCatalogue
         {
             MovieTitleLabel.Text = movie.Title;
             MovieYearLabel.Text = "Year: " + movie.Year.ToString();
-            MovieGenreLabel.Text = "Genre: " + movie.Genre;
+            MovieGenreLabel.Text = "Genre: " + ReturnGenreString(movie.Genres);
             MovieDescriptionBox.Text = movie.Description;
             MovieActorLabel.Text = "Actors: " + MovieActorLabelString(movie);
             MovieCountryLabel.Text = "Language: " + movie.Country;
@@ -269,8 +283,10 @@ namespace MovieCatalogue
             if (newMovieForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 changesMade = true;
-                movieList.Add(new Movie(newMovieForm.Title, newMovieForm.Year, newMovieForm.Genre, newMovieForm.Description, newMovieForm.ActorsInMovie, newMovieForm.Country, newMovieForm.Director, newMovieForm.CompendiumNumber, newMovieForm.PlayTime, ImageToBase64(newMovieForm.Poster, System.Drawing.Imaging.ImageFormat.Jpeg), newMovieForm.LentStatus, newMovieForm.LentToPerson));
-                Datahandler.SaveMovie("movie.xml", movieList);
+                movieList.Add(new Movie(newMovieForm.Title, newMovieForm.Year, newMovieForm.Genres, newMovieForm.Description, newMovieForm.ActorsInMovie, newMovieForm.Country, newMovieForm.Director, newMovieForm.CompendiumNumber, newMovieForm.PlayTime, ImageToBase64(newMovieForm.Poster, System.Drawing.Imaging.ImageFormat.Jpeg), newMovieForm.LentStatus, newMovieForm.LentToPerson));
+
+                SaveLoadDataForm form = new SaveLoadDataForm(true, movieList);
+                form.ShowDialog();
 
                 ResetListBoxDisplays();
                 
@@ -298,7 +314,8 @@ namespace MovieCatalogue
                 return;
             }
 
-            Datahandler.SaveMovie("movie.xml", movieList);
+            SaveLoadDataForm form = new SaveLoadDataForm(true, movieList);
+            form.ShowDialog();
 
             ResetLabels();
         }
@@ -343,7 +360,9 @@ namespace MovieCatalogue
         /// </summary>
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            Datahandler.SaveMovie("movie.xml", movieList);
+            SaveLoadDataForm form = new SaveLoadDataForm(true, movieList);
+            form.ShowDialog();
+
             if (changesMade)
             {
                 var result = System.Windows.Forms.MessageBox.Show("It seems you have made some changes to your data! Would if you to export it?",
@@ -384,7 +403,7 @@ namespace MovieCatalogue
                 changesMade = true;
                 editedMovie.Title = editMovieForm.Title;
                 editedMovie.Year = editMovieForm.Year;
-                editedMovie.Genre = editMovieForm.Genre;
+                editedMovie.Genres = editMovieForm.Genres;
                 editedMovie.Description = editMovieForm.Description;
                 editedMovie.ActorList.Clear();
                 editedMovie.ActorList.AddRange(editMovieForm.ActorsInMovie);
@@ -396,12 +415,11 @@ namespace MovieCatalogue
                 editedMovie.LentOut = editMovieForm.LentStatus;
                 editedMovie.LendPerson = editMovieForm.LentToPerson;
 
-                Datahandler.SaveMovie("movie.xml", movieList);
+                SaveLoadDataForm form = new SaveLoadDataForm(true, movieList);
+                form.ShowDialog();
 
                 ResetListBoxDisplays();
             }
-
-            this.ResetLabels();
         }
 
         private void Exportbutton_Click(object sender, EventArgs e)
