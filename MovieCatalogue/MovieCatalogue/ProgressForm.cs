@@ -35,6 +35,7 @@ namespace MovieCatalogue
         public ProgressForm(string search)
         {
             InitializeComponent();
+            this.ControlBox = false;
 
             this.searchText = search;
             DefaultStatusText = "Searching IMDB.com, please wait...";

@@ -33,11 +33,13 @@ namespace MovieCatalogue
         {
             InitializeComponent();
             CommonInitialiser();
+            this.ControlBox = false;
         }
 
         public AddMovieForm(Movie movie)
         {
             InitializeComponent();
+            this.ControlBox = false;
 
             #region Set text fields from the imported Movie
             AddMovieTitleBox.Text = movie.Title;
@@ -442,6 +444,12 @@ namespace MovieCatalogue
                 IMDBSearch_textbox.Text = "Search for a movie here...";
         }
 
-        #endregion
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
+
+        #endregion 
     }
 }

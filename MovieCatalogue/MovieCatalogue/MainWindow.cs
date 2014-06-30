@@ -20,11 +20,17 @@ namespace MovieCatalogue
         BindingList<Movie> movieList = Datahandler.LoadMovie("movie.xml");
         BindingList<Movie> movieDisplayList = new BindingList<Movie>();
         BindingList<Actor> actorList = Datahandler.LoadActors("actors.xml");
+        BindingList<Movie> previousMovieList = Datahandler.LoadMovie("movie.xml");
+
+        // This variable is set to true if any changes are made to the data.
+        bool changesMade = false;
+
         private static ToolTip tt = new ToolTip();
 
         public MainWindow()
         {
             InitializeComponent();
+            this.ControlBox = false;
 
             if (movieList == null)
                 movieList = new BindingList<Movie>();
@@ -233,6 +239,22 @@ namespace MovieCatalogue
             }
         }
 
+        private void ExportData()
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Choose a location to save your list of movies";
+
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Datahandler.ExportMovie(Path.Combine(fbd.SelectedPath, "Movies.xml"), movieList);
+                Datahandler.ExportActors(Path.Combine(fbd.SelectedPath, "Actors.xml"), actorList);
+                Datahandler.SaveActors("actors.xml", actorList);
+            }
+            ResetLabels();
+
+            System.Windows.Forms.MessageBox.Show("Data exported succesfully!");
+        }
+
         #endregion
 
 
@@ -246,7 +268,7 @@ namespace MovieCatalogue
             AddMovieForm newMovieForm = new AddMovieForm();
             if (newMovieForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-
+                changesMade = true;
                 movieList.Add(new Movie(newMovieForm.Title, newMovieForm.Year, newMovieForm.Genre, newMovieForm.Description, newMovieForm.ActorsInMovie, newMovieForm.Country, newMovieForm.Director, newMovieForm.CompendiumNumber, newMovieForm.PlayTime, ImageToBase64(newMovieForm.Poster, System.Drawing.Imaging.ImageFormat.Jpeg), newMovieForm.LentStatus, newMovieForm.LentToPerson));
                 Datahandler.SaveMovie("movie.xml", movieList);
 
@@ -264,6 +286,7 @@ namespace MovieCatalogue
             Movie toBeDeleted = new Movie();
             if (listBoxTitle.SelectedItem != null)
             {
+                changesMade = true;
                 toBeDeleted = (Movie)listBoxTitle.SelectedItem;
                 movieList.Remove((Movie)listBoxTitle.SelectedItem);
                 movieDisplayList.Remove((Movie)listBoxTitle.SelectedItem);
@@ -321,7 +344,17 @@ namespace MovieCatalogue
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Datahandler.SaveMovie("movie.xml", movieList);
+            if (changesMade)
+            {
+                var result = System.Windows.Forms.MessageBox.Show("It seems you have made some changes to your data! Would if you to export it?",
+                    "Data was changed", MessageBoxButtons.YesNo);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                    ExportData();
+            }
+
             this.Close();
+            
         }
 
         /// <summary>
@@ -348,6 +381,7 @@ namespace MovieCatalogue
 
             if (editMovieForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                changesMade = true;
                 editedMovie.Title = editMovieForm.Title;
                 editedMovie.Year = editMovieForm.Year;
                 editedMovie.Genre = editMovieForm.Genre;
@@ -372,24 +406,12 @@ namespace MovieCatalogue
 
         private void Exportbutton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Choose a location to save your list of movies";
-
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                Datahandler.ExportMovie(Path.Combine(fbd.SelectedPath, "Movies.xml"), movieList);
-                Datahandler.ExportActors(Path.Combine(fbd.SelectedPath, "Actors.xml"), actorList);
-                Datahandler.SaveActors("actors.xml", actorList);
-            }
-            ResetLabels();
-
-            MissingInfoForm mif = new MissingInfoForm("Data exported succesfully!");
-            mif.ShowDialog();
-
+            ExportData();
         }
 
         private void ImportButton_Click(object sender, EventArgs e)
         {
+            changesMade = true;
             LaunchImportDialogue();
         }
 
