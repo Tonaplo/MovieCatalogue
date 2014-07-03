@@ -452,7 +452,7 @@ namespace MovieCatalogue
 
         private void buttonGenre_Click(object sender, EventArgs e)
         {
-            GenreSelectionForm gsf = new GenreSelectionForm();
+            GenreSelectionForm gsf = new GenreSelectionForm(genres);
             gsf.ShowDialog();
             genres = gsf.SelectedGenres;
         }

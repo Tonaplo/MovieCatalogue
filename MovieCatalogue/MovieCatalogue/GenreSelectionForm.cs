@@ -13,10 +13,22 @@ namespace MovieCatalogue
     {
         List<Core.Genre> selectedGenres = new List<Core.Genre>();
 
-        public GenreSelectionForm()
+        public GenreSelectionForm(List<Core.Genre> genres)
         {
             InitializeComponent();
             listBoxGenre.DataSource = Enum.GetValues(typeof(MovieCatalogue.Core.Genre));
+            if (genres.Count == 0)
+                listBoxGenre.ClearSelected();
+            else
+            {
+                for (int i = 0; i < listBoxGenre.Items.Count; i++)
+                {
+                    if (genres.Contains((Core.Genre)listBoxGenre.Items[i]))
+                    {
+                        listBoxGenre.SetSelected(i, true);
+                    }
+                }
+            }
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
