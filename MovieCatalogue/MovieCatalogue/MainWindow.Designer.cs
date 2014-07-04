@@ -68,9 +68,11 @@ namespace MovieCatalogue
             this.listBoxTitle = new System.Windows.Forms.ListBox();
             this.comboBoxSearchBy = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBoxGenre = new System.Windows.Forms.ComboBox();
+            this.numericUpDownSearch = new System.Windows.Forms.NumericUpDown();
+            this.movieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MoviePosterBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +91,7 @@ namespace MovieCatalogue
             // 
             this.Searchbox.Location = new System.Drawing.Point(13, 68);
             this.Searchbox.Name = "Searchbox";
-            this.Searchbox.Size = new System.Drawing.Size(400, 21);
+            this.Searchbox.Size = new System.Drawing.Size(245, 21);
             this.Searchbox.TabIndex = 2;
             this.Searchbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Searchbox_KeyDown);
             // 
@@ -277,11 +279,11 @@ namespace MovieCatalogue
             this.NumberoOfMoviesLabel.BackColor = System.Drawing.Color.Transparent;
             this.NumberoOfMoviesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NumberoOfMoviesLabel.ForeColor = System.Drawing.Color.White;
-            this.NumberoOfMoviesLabel.Location = new System.Drawing.Point(12, 121);
+            this.NumberoOfMoviesLabel.Location = new System.Drawing.Point(12, 95);
             this.NumberoOfMoviesLabel.Name = "NumberoOfMoviesLabel";
-            this.NumberoOfMoviesLabel.Size = new System.Drawing.Size(151, 19);
+            this.NumberoOfMoviesLabel.Size = new System.Drawing.Size(151, 45);
             this.NumberoOfMoviesLabel.TabIndex = 22;
-            this.NumberoOfMoviesLabel.Text = "Number of Movies: <>";
+            this.NumberoOfMoviesLabel.Text = "Movies in Catalogue: <>\r\nCurrent search yielded: <>";
             this.NumberoOfMoviesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Exportbutton
@@ -321,7 +323,7 @@ namespace MovieCatalogue
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(14, 95);
+            this.buttonSearch.Location = new System.Drawing.Point(264, 67);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(149, 23);
             this.buttonSearch.TabIndex = 27;
@@ -364,10 +366,6 @@ namespace MovieCatalogue
             this.label1.Text = "Search By:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // movieBindingSource
-            // 
-            this.movieBindingSource.DataSource = typeof(MovieCatalogue.Core.Movie);
-            // 
             // comboBoxGenre
             // 
             this.comboBoxGenre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -375,10 +373,22 @@ namespace MovieCatalogue
             this.comboBoxGenre.FormattingEnabled = true;
             this.comboBoxGenre.Location = new System.Drawing.Point(12, 66);
             this.comboBoxGenre.Name = "comboBoxGenre";
-            this.comboBoxGenre.Size = new System.Drawing.Size(401, 23);
+            this.comboBoxGenre.Size = new System.Drawing.Size(246, 23);
             this.comboBoxGenre.TabIndex = 30;
             this.comboBoxGenre.Visible = false;
             this.comboBoxGenre.SelectedIndexChanged += new System.EventHandler(this.comboBoxGenre_SelectedIndexChanged);
+            // 
+            // numericUpDownSearch
+            // 
+            this.numericUpDownSearch.Location = new System.Drawing.Point(12, 67);
+            this.numericUpDownSearch.Name = "numericUpDownSearch";
+            this.numericUpDownSearch.Size = new System.Drawing.Size(246, 21);
+            this.numericUpDownSearch.TabIndex = 31;
+            this.numericUpDownSearch.ValueChanged += new System.EventHandler(this.numericUpDownSearch_ValueChanged);
+            // 
+            // movieBindingSource
+            // 
+            this.movieBindingSource.DataSource = typeof(MovieCatalogue.Core.Movie);
             // 
             // MainWindow
             // 
@@ -388,6 +398,7 @@ namespace MovieCatalogue
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(910, 499);
+            this.Controls.Add(this.numericUpDownSearch);
             this.Controls.Add(this.comboBoxGenre);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxSearchBy);
@@ -425,6 +436,7 @@ namespace MovieCatalogue
             this.Text = "Main Window";
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.MoviePosterBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movieBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -463,6 +475,7 @@ namespace MovieCatalogue
         private ComboBox comboBoxSearchBy;
         private Label label1;
         private ComboBox comboBoxGenre;
+        private NumericUpDown numericUpDownSearch;
     }
 }
 

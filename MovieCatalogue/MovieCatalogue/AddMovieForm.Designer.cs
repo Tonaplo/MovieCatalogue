@@ -52,7 +52,6 @@
             this.AddMovieDirectorBox = new System.Windows.Forms.TextBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.CompendiumLabel = new System.Windows.Forms.Label();
-            this.AddMovieCompendiumBox = new System.Windows.Forms.TextBox();
             this.IMDBMoviePictureBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.IMBDSearchListBox = new System.Windows.Forms.ListBox();
@@ -67,7 +66,12 @@
             this.lentToLabel = new System.Windows.Forms.Label();
             this.lentToTextBox = new System.Windows.Forms.TextBox();
             this.buttonGenre = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDownCompendium = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownSpot = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.IMDBMoviePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCompendium)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSpot)).BeginInit();
             this.SuspendLayout();
             // 
             // TitleLabel
@@ -95,7 +99,7 @@
             this.YearLabel.BackColor = System.Drawing.Color.Transparent;
             this.YearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.YearLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.YearLabel.Location = new System.Drawing.Point(384, 9);
+            this.YearLabel.Location = new System.Drawing.Point(345, 9);
             this.YearLabel.Name = "YearLabel";
             this.YearLabel.Size = new System.Drawing.Size(33, 13);
             this.YearLabel.TabIndex = 4;
@@ -107,7 +111,7 @@
             this.DoneButton.BackColor = System.Drawing.SystemColors.Control;
             this.DoneButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DoneButton.Font = new System.Drawing.Font("Century", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DoneButton.Location = new System.Drawing.Point(417, 347);
+            this.DoneButton.Location = new System.Drawing.Point(425, 348);
             this.DoneButton.Name = "DoneButton";
             this.DoneButton.Size = new System.Drawing.Size(75, 23);
             this.DoneButton.TabIndex = 9;
@@ -117,9 +121,9 @@
             // 
             // AddMovieYearBox
             // 
-            this.AddMovieYearBox.Location = new System.Drawing.Point(420, 2);
+            this.AddMovieYearBox.Location = new System.Drawing.Point(384, 2);
             this.AddMovieYearBox.Name = "AddMovieYearBox";
-            this.AddMovieYearBox.Size = new System.Drawing.Size(80, 20);
+            this.AddMovieYearBox.Size = new System.Drawing.Size(116, 20);
             this.AddMovieYearBox.TabIndex = 3;
             // 
             // Addmoviedescriptionlabel
@@ -128,7 +132,7 @@
             this.Addmoviedescriptionlabel.BackColor = System.Drawing.Color.Transparent;
             this.Addmoviedescriptionlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Addmoviedescriptionlabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Addmoviedescriptionlabel.Location = new System.Drawing.Point(15, 204);
+            this.Addmoviedescriptionlabel.Location = new System.Drawing.Point(15, 231);
             this.Addmoviedescriptionlabel.Name = "Addmoviedescriptionlabel";
             this.Addmoviedescriptionlabel.Size = new System.Drawing.Size(96, 13);
             this.Addmoviedescriptionlabel.TabIndex = 7;
@@ -136,11 +140,11 @@
             // 
             // AddMovieDescriptionBox
             // 
-            this.AddMovieDescriptionBox.Location = new System.Drawing.Point(18, 220);
+            this.AddMovieDescriptionBox.Location = new System.Drawing.Point(18, 247);
             this.AddMovieDescriptionBox.Multiline = true;
             this.AddMovieDescriptionBox.Name = "AddMovieDescriptionBox";
             this.AddMovieDescriptionBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.AddMovieDescriptionBox.Size = new System.Drawing.Size(480, 121);
+            this.AddMovieDescriptionBox.Size = new System.Drawing.Size(480, 94);
             this.AddMovieDescriptionBox.TabIndex = 8;
             // 
             // actorsLabelAddNewMovie
@@ -161,7 +165,7 @@
             this.AddMovieActorsInMovieBox.FormattingEnabled = true;
             this.AddMovieActorsInMovieBox.Location = new System.Drawing.Point(15, 93);
             this.AddMovieActorsInMovieBox.Name = "AddMovieActorsInMovieBox";
-            this.AddMovieActorsInMovieBox.Size = new System.Drawing.Size(134, 108);
+            this.AddMovieActorsInMovieBox.Size = new System.Drawing.Size(134, 134);
             this.AddMovieActorsInMovieBox.TabIndex = 10;
             // 
             // AddMovieAllActorsBox
@@ -170,14 +174,14 @@
             this.AddMovieAllActorsBox.FormattingEnabled = true;
             this.AddMovieAllActorsBox.Location = new System.Drawing.Point(183, 93);
             this.AddMovieAllActorsBox.Name = "AddMovieAllActorsBox";
-            this.AddMovieAllActorsBox.Size = new System.Drawing.Size(150, 82);
+            this.AddMovieAllActorsBox.Size = new System.Drawing.Size(150, 108);
             this.AddMovieAllActorsBox.Sorted = true;
             this.AddMovieAllActorsBox.TabIndex = 11;
             // 
             // Addbutton
             // 
             this.Addbutton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Addbutton.Location = new System.Drawing.Point(155, 93);
+            this.Addbutton.Location = new System.Drawing.Point(155, 124);
             this.Addbutton.Name = "Addbutton";
             this.Addbutton.Size = new System.Drawing.Size(22, 23);
             this.Addbutton.TabIndex = 12;
@@ -193,14 +197,14 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Location = new System.Drawing.Point(180, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 13;
-            this.label1.Text = "All actors:";
+            this.label1.Text = "Search Actor:";
             // 
             // AddMovieDeleteActorButton
             // 
             this.AddMovieDeleteActorButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddMovieDeleteActorButton.Location = new System.Drawing.Point(155, 122);
+            this.AddMovieDeleteActorButton.Location = new System.Drawing.Point(155, 150);
             this.AddMovieDeleteActorButton.Name = "AddMovieDeleteActorButton";
             this.AddMovieDeleteActorButton.Size = new System.Drawing.Size(22, 23);
             this.AddMovieDeleteActorButton.TabIndex = 14;
@@ -213,7 +217,7 @@
             this.AddMovieNewActorButton.BackColor = System.Drawing.SystemColors.Control;
             this.AddMovieNewActorButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddMovieNewActorButton.Font = new System.Drawing.Font("Century", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddMovieNewActorButton.Location = new System.Drawing.Point(348, 178);
+            this.AddMovieNewActorButton.Location = new System.Drawing.Point(348, 204);
             this.AddMovieNewActorButton.Name = "AddMovieNewActorButton";
             this.AddMovieNewActorButton.Size = new System.Drawing.Size(152, 23);
             this.AddMovieNewActorButton.TabIndex = 15;
@@ -227,7 +231,7 @@
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(348, 105);
+            this.label2.Location = new System.Drawing.Point(348, 134);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(152, 42);
             this.label2.TabIndex = 16;
@@ -235,7 +239,7 @@
             // 
             // AddMovieNewActorBox
             // 
-            this.AddMovieNewActorBox.Location = new System.Drawing.Point(348, 150);
+            this.AddMovieNewActorBox.Location = new System.Drawing.Point(348, 179);
             this.AddMovieNewActorBox.Multiline = true;
             this.AddMovieNewActorBox.Name = "AddMovieNewActorBox";
             this.AddMovieNewActorBox.Size = new System.Drawing.Size(152, 22);
@@ -245,7 +249,7 @@
             // 
             this.AddMovieFullDeleteActor.BackColor = System.Drawing.SystemColors.Control;
             this.AddMovieFullDeleteActor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddMovieFullDeleteActor.Location = new System.Drawing.Point(183, 178);
+            this.AddMovieFullDeleteActor.Location = new System.Drawing.Point(183, 204);
             this.AddMovieFullDeleteActor.Name = "AddMovieFullDeleteActor";
             this.AddMovieFullDeleteActor.Size = new System.Drawing.Size(150, 23);
             this.AddMovieFullDeleteActor.TabIndex = 18;
@@ -263,7 +267,7 @@
             this.CountryLabel.Name = "CountryLabel";
             this.CountryLabel.Size = new System.Drawing.Size(59, 26);
             this.CountryLabel.TabIndex = 19;
-            this.CountryLabel.Text = "Spoken\r\nLanguage*";
+            this.CountryLabel.Text = "\r\nLanguage*";
             // 
             // AddMovieCountryBox
             // 
@@ -311,18 +315,11 @@
             this.CompendiumLabel.BackColor = System.Drawing.Color.Transparent;
             this.CompendiumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CompendiumLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.CompendiumLabel.Location = new System.Drawing.Point(338, 40);
+            this.CompendiumLabel.Location = new System.Drawing.Point(345, 41);
             this.CompendiumLabel.Name = "CompendiumLabel";
             this.CompendiumLabel.Size = new System.Drawing.Size(72, 13);
             this.CompendiumLabel.TabIndex = 24;
             this.CompendiumLabel.Text = "Compendium*";
-            // 
-            // AddMovieCompendiumBox
-            // 
-            this.AddMovieCompendiumBox.Location = new System.Drawing.Point(420, 40);
-            this.AddMovieCompendiumBox.Name = "AddMovieCompendiumBox";
-            this.AddMovieCompendiumBox.Size = new System.Drawing.Size(80, 20);
-            this.AddMovieCompendiumBox.TabIndex = 6;
             // 
             // IMDBMoviePictureBox
             // 
@@ -361,7 +358,7 @@
             this.PlayTimeLabel.BackColor = System.Drawing.Color.Transparent;
             this.PlayTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayTimeLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.PlayTimeLabel.Location = new System.Drawing.Point(360, 75);
+            this.PlayTimeLabel.Location = new System.Drawing.Point(345, 103);
             this.PlayTimeLabel.Name = "PlayTimeLabel";
             this.PlayTimeLabel.Size = new System.Drawing.Size(57, 13);
             this.PlayTimeLabel.TabIndex = 30;
@@ -369,7 +366,7 @@
             // 
             // AddMoviePlayTimeTextBox
             // 
-            this.AddMoviePlayTimeTextBox.Location = new System.Drawing.Point(420, 70);
+            this.AddMoviePlayTimeTextBox.Location = new System.Drawing.Point(417, 96);
             this.AddMoviePlayTimeTextBox.Name = "AddMoviePlayTimeTextBox";
             this.AddMoviePlayTimeTextBox.Size = new System.Drawing.Size(48, 20);
             this.AddMoviePlayTimeTextBox.TabIndex = 7;
@@ -380,7 +377,7 @@
             this.PlayTimeMinutesLabel.BackColor = System.Drawing.Color.Transparent;
             this.PlayTimeMinutesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayTimeMinutesLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.PlayTimeMinutesLabel.Location = new System.Drawing.Point(470, 75);
+            this.PlayTimeMinutesLabel.Location = new System.Drawing.Point(471, 103);
             this.PlayTimeMinutesLabel.Name = "PlayTimeMinutesLabel";
             this.PlayTimeMinutesLabel.Size = new System.Drawing.Size(26, 13);
             this.PlayTimeMinutesLabel.TabIndex = 32;
@@ -468,13 +465,41 @@
             // 
             this.buttonGenre.BackColor = System.Drawing.SystemColors.Control;
             this.buttonGenre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonGenre.Location = new System.Drawing.Point(183, 4);
+            this.buttonGenre.Location = new System.Drawing.Point(183, 0);
             this.buttonGenre.Name = "buttonGenre";
             this.buttonGenre.Size = new System.Drawing.Size(150, 23);
             this.buttonGenre.TabIndex = 40;
             this.buttonGenre.Text = "Genres";
             this.buttonGenre.UseVisualStyleBackColor = false;
             this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(449, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 41;
+            this.label3.Text = "Spot*";
+            // 
+            // numericUpDownCompendium
+            // 
+            this.numericUpDownCompendium.Location = new System.Drawing.Point(348, 62);
+            this.numericUpDownCompendium.Name = "numericUpDownCompendium";
+            this.numericUpDownCompendium.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.numericUpDownCompendium.Size = new System.Drawing.Size(69, 20);
+            this.numericUpDownCompendium.TabIndex = 42;
+            // 
+            // numericUpDownSpot
+            // 
+            this.numericUpDownSpot.Location = new System.Drawing.Point(431, 62);
+            this.numericUpDownSpot.Name = "numericUpDownSpot";
+            this.numericUpDownSpot.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.numericUpDownSpot.Size = new System.Drawing.Size(69, 20);
+            this.numericUpDownSpot.TabIndex = 43;
             // 
             // AddMovieForm
             // 
@@ -483,6 +508,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(714, 382);
+            this.Controls.Add(this.numericUpDownSpot);
+            this.Controls.Add(this.numericUpDownCompendium);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonGenre);
             this.Controls.Add(this.lentToTextBox);
             this.Controls.Add(this.lentToLabel);
@@ -497,7 +525,6 @@
             this.Controls.Add(this.IMBDSearchListBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.IMDBMoviePictureBox);
-            this.Controls.Add(this.AddMovieCompendiumBox);
             this.Controls.Add(this.CompendiumLabel);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddMovieDirectorBox);
@@ -526,6 +553,8 @@
             this.Name = "AddMovieForm";
             this.Text = "Add New Movie";
             ((System.ComponentModel.ISupportInitialize)(this.IMDBMoviePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCompendium)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSpot)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -556,7 +585,6 @@
         private System.Windows.Forms.TextBox AddMovieDirectorBox;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Label CompendiumLabel;
-        private System.Windows.Forms.TextBox AddMovieCompendiumBox;
         private System.Windows.Forms.PictureBox IMDBMoviePictureBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox IMBDSearchListBox;
@@ -571,5 +599,8 @@
         private System.Windows.Forms.Label lentToLabel;
         private System.Windows.Forms.TextBox lentToTextBox;
         private System.Windows.Forms.Button buttonGenre;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numericUpDownCompendium;
+        private System.Windows.Forms.NumericUpDown numericUpDownSpot;
     }
 }

@@ -11,11 +11,11 @@ namespace MovieCatalogue
 {
     public partial class WatchMovie : Form
     {
-        public WatchMovie(string index, string name)
+        public WatchMovie(Core.Compendium comp, string name)
         {
             InitializeComponent();
             TitleLabel.Text = name;
-            CompendiumLabel.Text = index;
+            CompendiumLabel.Text = "Compendium " + comp.compendium + ", Spot " + comp.spot;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

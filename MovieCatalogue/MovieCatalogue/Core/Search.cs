@@ -14,11 +14,13 @@ namespace MovieCatalogue.Core
             int index=0;
             if (tab == "Title" && movie.Title.ToLower().Contains(search.ToLower()))
                 return true;
-            else if (tab == "Genre" && GenreSearch(movie._genres,search))
+            else if (tab == "Genre" && GenreSearch(movie._genres, search))
                 return true;
             else if (tab == "Actor" && ActorSearch(search, movie._actorList))
                 return true;
             else if (tab == "Rented" && movie._lentOut)
+                return true;
+            else if (tab == "Compendium" && movie.CompendiumNumber.compendium == int.Parse(search))
                 return true;
 
             return false;

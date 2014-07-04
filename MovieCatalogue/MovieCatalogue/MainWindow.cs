@@ -46,6 +46,7 @@ namespace MovieCatalogue
             comboBoxSearchBy.Items.Add("Genre");
             comboBoxSearchBy.Items.Add("Actor");
             comboBoxSearchBy.Items.Add("Rented");
+            comboBoxSearchBy.Items.Add("Compendium");
             comboBoxSearchBy.SelectedItem = "Title";
             comboBoxGenre.DataSource = Enum.GetValues(typeof(MovieCatalogue.Core.Genre));
         }
@@ -90,13 +91,23 @@ namespace MovieCatalogue
         private void ResetDisplayedListOfMovies()
         {
             movieDisplayList = new BindingList<Movie>(movieList);
+            SetDisplayType();
+
+        }
+
+        private void SetDisplayType()
+        {
+            if (comboBoxSearchBy.SelectedItem == "Compendium")
+                listBoxTitle.DisplayMember = "DisplayCompendium";
+            else
+                listBoxTitle.DisplayMember = "DisplayTitle";
         }
 
         private void UpdateListBox()
         {
             listBoxTitle.DataSource = null;
             listBoxTitle.DataSource = movieDisplayList;
-            listBoxTitle.DisplayMember = "DisplayTitle";
+            SetDisplayType();
         }
 
         public void SearchInitiated()
@@ -105,10 +116,12 @@ namespace MovieCatalogue
             List<int> tobeRemoved = new List<int>();
             string searchItem = "";
 
-            if (comboBoxSearchBy.SelectedItem != "Genre")
-                searchItem = Searchbox.Text;
-            else
+            if (comboBoxSearchBy.SelectedItem == "Genre")
                 searchItem = comboBoxGenre.SelectedItem.ToString();
+            else if (comboBoxSearchBy.SelectedItem == "Compendium")
+                searchItem = numericUpDownSearch.Value.ToString();
+            else
+                searchItem = Searchbox.Text;
 
             for (int i = 0; i < movieList.Count; i++)
             {
@@ -119,7 +132,7 @@ namespace MovieCatalogue
             }
 
             var li = tobeRemoved.OrderByDescending(x => x);
-            NumberoOfMoviesLabel.Text = "This search yielded " + tobeRemoved.Count + " results.";
+            NumberoOfMoviesLabel.Text = "Movies in Catalogue: " + movieList.Count.ToString() + Environment.NewLine + "Search yielded: " + tobeRemoved.Count + " results.";
 
             foreach (var item in li)
             {
@@ -143,7 +156,7 @@ namespace MovieCatalogue
             MovieDescriptionBox.Text = "";
             MoviePlayTimeLabel.Text = "Playtime: <Play Time>";
             MoviePosterBox.Image = MoviePosterBox.InitialImage;
-            NumberoOfMoviesLabel.Text = "Number of Movies: " + movieList.Count.ToString();
+            NumberoOfMoviesLabel.Text = "Number of Movies: " + movieList.Count.ToString() + Environment.NewLine + "Search yielded: " + movieDisplayList.Count;
 
             listBoxTitle.ClearSelected();
         }
@@ -230,12 +243,22 @@ namespace MovieCatalogue
             return image;
         }
 
-        private void SetCorrectSearchBox(bool searchByGenre)
+        private void SetCorrectSearchBox(string searchMethod)
         {
-            Searchbox.Enabled = !searchByGenre;
-            Searchbox.Visible = !searchByGenre;
-            comboBoxGenre.Enabled = searchByGenre;
-            comboBoxGenre.Visible = searchByGenre;
+            bool genre = false;
+            bool comp = false;
+
+            if (searchMethod == "Genre")
+                genre = true;
+            else if (searchMethod == "Compendium")
+                comp = true;
+
+            Searchbox.Enabled = (!genre && !comp);
+            Searchbox.Visible = (!genre && !comp);
+            comboBoxGenre.Enabled = genre;
+            comboBoxGenre.Visible = genre;
+            numericUpDownSearch.Enabled = comp;
+            numericUpDownSearch.Visible = comp;
         }
 
         private void LaunchImportDialogue()
@@ -463,10 +486,7 @@ namespace MovieCatalogue
 
         private void comboBoxSearchBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxSearchBy.SelectedItem != "Genre")
-                SetCorrectSearchBox(false);
-            else
-                SetCorrectSearchBox(true);
+            SetCorrectSearchBox(comboBoxSearchBy.SelectedItem.ToString());
 
             Searchbox.Text = "";
             SearchInitiated();
@@ -495,9 +515,12 @@ namespace MovieCatalogue
             }
         }
 
-        #endregion
+        private void numericUpDownSearch_ValueChanged(object sender, EventArgs e)
+        {
+            SearchInitiated();
+        }
 
-        
+        #endregion
     }
 
 }

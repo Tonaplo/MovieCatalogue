@@ -258,8 +258,6 @@ namespace MovieCatalogue
             catch (Exception exp) { newMovie.Director = "Error!"; erroresWhileParsing = true; }
             finally { SetProgress((int)percentPermovie * 6 + (int)percentOfWhole); }
 
-            newMovie.CompendiumNumber = "0";
-
             try { newMovie.PlayTime = movie.Runtime.Data.Minutes + (movie.Runtime.Data.Hours * 60); }
             catch (Exception exp) { newMovie.PlayTime = 0; erroresWhileParsing = true; }
             finally { SetProgress((int)percentPermovie * 7 + (int)percentOfWhole); }

@@ -52,7 +52,8 @@ namespace MovieCatalogue
 
             AddMovieCountryBox.Text = movie.Country;
             AddMovieDirectorBox.Text = movie.Director;
-            AddMovieCompendiumBox.Text = movie.CompendiumNumber.ToString();
+            numericUpDownCompendium.Value = movie.CompendiumNumber.compendium;
+            numericUpDownSpot.Value = movie.CompendiumNumber.spot;
             AddMovieDescriptionBox.Text = movie.Description;
             AddMoviePlayTimeTextBox.Text = movie.PlayTime.ToString();
             IMDBMoviePictureBox.Image = Base64ToImage(movie.Poster);
@@ -149,9 +150,9 @@ namespace MovieCatalogue
             get { return AddMovieDirectorBox.Text; }
         }
 
-        public string CompendiumNumber
+        public Compendium CompendiumNumber
         {
-            get { return AddMovieCompendiumBox.Text; }
+            get { return new Compendium((int)numericUpDownCompendium.Value, (int)numericUpDownSpot.Value); }
         }
 
         public int PlayTime
@@ -205,7 +206,7 @@ namespace MovieCatalogue
         /// </summary>
         private void DoneButton_Click(object sender, EventArgs e)
         {
-            if (this.AddMovieTitleBox.Text == "" || this.AddMovieYearBox.Text == "" || genres.Count == 0 || this.AddMovieDescriptionBox.Text == "" || this.actorsInMovie.Count == 0 || this.AddMovieCountryBox.Text == "" || this.AddMovieDirectorBox.Text == "" || this.AddMovieCompendiumBox.Text == "" || this.AddMoviePlayTimeTextBox.Text == "")
+            if (this.AddMovieTitleBox.Text == "" || this.AddMovieYearBox.Text == "" || genres.Count == 0 || this.AddMovieDescriptionBox.Text == "" || this.actorsInMovie.Count == 0 || this.AddMovieCountryBox.Text == "" || this.AddMovieDirectorBox.Text == "" || this.numericUpDownCompendium.Value == 0 || this.numericUpDownSpot.Value == 0 || this.AddMoviePlayTimeTextBox.Text == "")
             {
                 MissingInfoForm missingInfo = new MissingInfoForm("Some infomation is missing! Make sure you have filled out all of the required fields. They are marked with a star!");
                 missingInfo.ShowDialog();
