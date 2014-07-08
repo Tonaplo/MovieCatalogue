@@ -312,6 +312,7 @@ namespace MovieCatalogue
                 form.ShowDialog();
 
                 ResetListBoxDisplays();
+                SearchInitiated();
                 
             }
 
@@ -417,7 +418,7 @@ namespace MovieCatalogue
                 editMovieForm = new AddMovieForm();
                 MissingInfoForm noMovie = new MissingInfoForm("You have not selected a movie!");
                 noMovie.ShowDialog();
-                AddMovieButton_Click(null, null);
+                //AddMovieButton_Click(null, null);
                 return;
             }
 
@@ -442,6 +443,7 @@ namespace MovieCatalogue
                 form.ShowDialog();
 
                 ResetListBoxDisplays();
+                SearchInitiated();
             }
         }
 
