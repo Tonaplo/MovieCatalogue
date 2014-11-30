@@ -283,28 +283,29 @@ namespace MovieCatalogue
 
             try
             {
-            
-            Movie IMBDSelectedMovie = (Movie)IMBDSearchListBox.SelectedItem;
-            int index = IMBDSearchListBox.SelectedIndex;
+                Movie IMBDSelectedMovie = (Movie)IMBDSearchListBox.SelectedItem;
+                int index = IMBDSearchListBox.SelectedIndex;
 
-            AddMovieTitleBox.Text = IMBDSelectedMovie.Title;
-            AddMovieYearBox.Text = IMBDSelectedMovie.Year.ToString();
-            AddMovieCountryBox.Text = IMBDSelectedMovie.Country;
-            AddMovieDirectorBox.Text = IMBDSelectedMovie.Director;
-            AddMovieDescriptionBox.Text = IMBDSelectedMovie.Description;
-            AddMoviePlayTimeTextBox.Text = IMBDSelectedMovie.PlayTime.ToString();
+                AddMovieTitleBox.Text = IMBDSelectedMovie.Title;
+                AddMovieYearBox.Text = IMBDSelectedMovie.Year.ToString();
+                AddMovieCountryBox.Text = IMBDSelectedMovie.Country;
+                AddMovieDirectorBox.Text = IMBDSelectedMovie.Director;
+                AddMovieDescriptionBox.Text = IMBDSelectedMovie.Description;
+                AddMoviePlayTimeTextBox.Text = IMBDSelectedMovie.PlayTime.ToString();
 
-            if (IMBDPosterList.Count >= index)
-                IMDBMoviePictureBox.Image = IMBDPosterList[index];
+                if (IMBDPosterList.Count >= index)
+                    IMDBMoviePictureBox.Image = IMBDPosterList[index];
 
-            actorsInMovie.Clear();
-            if (IMBDSelectedMovie.ActorList.Count == 3)
-            {
-                actorsInMovie.Add(IMBDSelectedMovie.ActorList[0]);
-                actorsInMovie.Add(IMBDSelectedMovie.ActorList[1]);
-                actorsInMovie.Add(IMBDSelectedMovie.ActorList[2]);
-            }
+                for (int i = 0; i < IMBDSelectedMovie.Genres.Count; i++)
+                {
+                    genres.Add(IMBDSelectedMovie.Genres[i]);
+                }
 
+                actorsInMovie.Clear();
+                for (int i = 0; i < IMBDSelectedMovie.ActorList.Count; i++)
+                {
+                    actorsInMovie.Add(IMBDSelectedMovie.ActorList[i]);
+                }
             }
             catch (Exception exp) 
             {
@@ -454,8 +455,9 @@ namespace MovieCatalogue
         private void buttonGenre_Click(object sender, EventArgs e)
         {
             GenreSelectionForm gsf = new GenreSelectionForm(genres);
-            gsf.ShowDialog();
-            genres = gsf.SelectedGenres;
+            var result = gsf.ShowDialog();
+            if(result == System.Windows.Forms.DialogResult.OK)
+                genres = gsf.SelectedGenres;
         }
 
         #endregion 

@@ -21,6 +21,7 @@ namespace MovieCatalogue
                 listBoxGenre.ClearSelected();
             else
             {
+
                 for (int i = 0; i < listBoxGenre.Items.Count; i++)
                 {
                     if (genres.Contains((Core.Genre)listBoxGenre.Items[i]))
